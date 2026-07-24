@@ -1,0 +1,417 @@
+swagger: '2.0'
+info:
+  title: SmartHR カスタム家族項目テンプレート Webhook API
+  description: SmartHR の各種データを操作する API です
+  license:
+    name: SmartHR, Inc
+  version: 0.0.1
+host: app.smarthr.jp
+basePath: /api
+schemes:
+- https
+produces:
+- application/json;charset=utf-8
+tags:
+- name: Webhook
+  description: Webhook を操作します
+paths:
+  /v1/webhooks/{id}:
+    get:
+      summary: 取得
+      description: '指定した ID の Webhook 情報を取得します。
+
+        '
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: id
+        description: Webhook ID
+        type: string
+        required: true
+      responses:
+        '200':
+          description: 取得
+          schema:
+            $ref: '#/definitions/Webhook'
+      tags:
+      - Webhook
+      operationId: getV1WebhooksId
+    put:
+      summary: 更新
+      description: "指定した ID の Webhook 情報を更新します。\n未指定の属性は情報が削除されます。未指定の属性を消したくない場合は「部分更新」をご利用ください。\n\nBODY SAMPLE と BODY SCHEMA を参考に JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\nJSON 例\n```\n{\n  \"url\": \"https://example.com/\",\n  \"crew_created\": true,\n  \"crew_updated\": false,\n  \"crew_deleted\": true,\n  \"crew_imported\": false\n}\n```\n"
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - in: path
+        name: id
+        description: Webhook ID
+        type: string
+        required: true
+      - name: putV1WebhooksId
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/putV1WebhooksId'
+      responses:
+        '200':
+          description: 更新
+          schema:
+            $ref: '#/definitions/Webhook'
+      tags:
+      - Webhook
+      operationId: putV1WebhooksId
+    patch:
+      summary: 部分更新
+      description: "指定した ID の Webhook 情報を部分更新します。\n\nBODY SAMPLE と BODY SCHEMA を参考に JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\nJSON 例\n```\n{\n  \"crew_created\": false,\n  \"crew_updated\": true\n}\n```\n"
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - in: path
+        name: id
+        description: Webhook ID
+        type: string
+        required: true
+      - name: patchV1WebhooksId
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/patchV1WebhooksId'
+      responses:
+        '200':
+          description: 部分更新
+          schema:
+            $ref: '#/definitions/Webhook'
+      tags:
+      - Webhook
+      operationId: patchV1WebhooksId
+    delete:
+      summary: 削除
+      description: '指定した ID の Webhook 情報を削除します。
+
+        '
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: id
+        description: Webhook ID
+        type: string
+        required: true
+      responses:
+        '204':
+          description: (no content)
+          schema:
+            $ref: '#/definitions/Webhook'
+      tags:
+      - Webhook
+      operationId: deleteV1WebhooksId
+  /v1/webhooks:
+    get:
+      summary: リストの取得
+      description: 'Webhook をリストで取得します。
+
+        '
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: page
+        description: Page of results to fetch.
+        type: integer
+        format: int32
+        default: 1
+        required: false
+      - in: query
+        name: per_page
+        description: Number of results to return per page.
+        type: integer
+        format: int32
+        default: 10
+        required: false
+      responses:
+        '200':
+          description: リストの取得
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Webhook'
+      tags:
+      - Webhook
+      operationId: getV1Webhooks
+    post:
+      summary: 登録
+      description: "Webhook を新規登録します。\n\nBODY SAMPLE と BODY SCHEMA を参考に JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\nJSON 例\n```\n{\n  \"url\": \"https://example.com/\",\n  \"crew_created\": true,\n  \"crew_updated\": false,\n  \"crew_deleted\": true,\n  \"crew_imported\": false\n}\n```\n"
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: postV1Webhooks
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/postV1Webhooks'
+      responses:
+        '201':
+          description: 登録
+          schema:
+            $ref: '#/definitions/Webhook'
+      tags:
+      - Webhook
+      operationId: postV1Webhooks
+definitions:
+  patchV1WebhooksId:
+    type: object
+    properties:
+      url:
+        type: string
+        description: 通知先URL
+      description:
+        type: string
+        description: 説明
+      crew_created:
+        type: boolean
+        description: 従業員情報が作成されたときに通知するかどうか
+      crew_updated:
+        type: boolean
+        description: 従業員情報が更新されたときに通知するかどうか
+      crew_deleted:
+        type: boolean
+        description: 従業員情報が削除されたときに通知するかどうか
+      crew_imported:
+        type: boolean
+        description: 従業員情報がインポートされたときに通知するかどうか
+      dependent_created:
+        type: boolean
+        description: 家族情報が作成されたときに通知するかどうか
+      dependent_updated:
+        type: boolean
+        description: 家族情報が更新されたときに通知するかどうか
+      dependent_deleted:
+        type: boolean
+        description: 家族情報が削除されたときに通知するかどうか
+      dependent_imported:
+        type: boolean
+        description: 家族情報がインポートされたときに通知するかどうか
+      expose_only_id:
+        type: boolean
+        description: 変更されたデータのIDのみ送信する
+      disabled_at:
+        type: string
+        format: date
+        description: 無効化された日時
+      access_type:
+        type: string
+        description: アクセス種別
+        enum:
+        - read_and_update
+        - hidden
+        - read_and_update_only_origin
+      secret_token:
+        type: string
+        description: 通知に付与される Secret Token
+    required:
+    - crew_created
+    - crew_updated
+    - crew_deleted
+    - crew_imported
+    - dependent_created
+    - dependent_updated
+    - dependent_deleted
+    - dependent_imported
+    description: 部分更新
+  postV1Webhooks:
+    type: object
+    properties:
+      url:
+        type: string
+        description: 通知先URL
+      description:
+        type: string
+        description: 説明
+      crew_created:
+        type: boolean
+        description: 従業員情報が作成されたときに通知するかどうか
+      crew_updated:
+        type: boolean
+        description: 従業員情報が更新されたときに通知するかどうか
+      crew_deleted:
+        type: boolean
+        description: 従業員情報が削除されたときに通知するかどうか
+      crew_imported:
+        type: boolean
+        description: 従業員情報がインポートされたときに通知するかどうか
+      dependent_created:
+        type: boolean
+        description: 家族情報が作成されたときに通知するかどうか
+      dependent_updated:
+        type: boolean
+        description: 家族情報が更新されたときに通知するかどうか
+      dependent_deleted:
+        type: boolean
+        description: 家族情報が削除されたときに通知するかどうか
+      dependent_imported:
+        type: boolean
+        description: 家族情報がインポートされたときに通知するかどうか
+      expose_only_id:
+        type: boolean
+        description: 変更されたデータのIDのみ送信する
+      disabled_at:
+        type: string
+        format: date
+        description: 無効化された日時
+      access_type:
+        type: string
+        description: アクセス種別
+        enum:
+        - read_and_update
+        - hidden
+        - read_and_update_only_origin
+      secret_token:
+        type: string
+        description: 通知に付与される Secret Token
+    required:
+    - crew_created
+    - crew_updated
+    - crew_deleted
+    - crew_imported
+    - dependent_created
+    - dependent_updated
+    - dependent_deleted
+    - dependent_imported
+    description: 登録
+  putV1WebhooksId:
+    type: object
+    properties:
+      url:
+        type: string
+        description: 通知先URL
+      description:
+        type: string
+        description: 説明
+      crew_created:
+        type: boolean
+        description: 従業員情報が作成されたときに通知するかどうか
+      crew_updated:
+        type: boolean
+        description: 従業員情報が更新されたときに通知するかどうか
+      crew_deleted:
+        type: boolean
+        description: 従業員情報が削除されたときに通知するかどうか
+      crew_imported:
+        type: boolean
+        description: 従業員情報がインポートされたときに通知するかどうか
+      dependent_created:
+        type: boolean
+        description: 家族情報が作成されたときに通知するかどうか
+      dependent_updated:
+        type: boolean
+        description: 家族情報が更新されたときに通知するかどうか
+      dependent_deleted:
+        type: boolean
+        description: 家族情報が削除されたときに通知するかどうか
+      dependent_imported:
+        type: boolean
+        description: 家族情報がインポートされたときに通知するかどうか
+      expose_only_id:
+        type: boolean
+        description: 変更されたデータのIDのみ送信する
+      disabled_at:
+        type: string
+        format: date
+        description: 無効化された日時
+      access_type:
+        type: string
+        description: アクセス種別
+        enum:
+        - read_and_update
+        - hidden
+        - read_and_update_only_origin
+      secret_token:
+        type: string
+        description: 通知に付与される Secret Token
+    required:
+    - crew_created
+    - crew_updated
+    - crew_deleted
+    - crew_imported
+    - dependent_created
+    - dependent_updated
+    - dependent_deleted
+    - dependent_imported
+    description: 更新
+  Webhook:
+    type: object
+    properties:
+      id:
+        type: string
+        description: Webhook ID
+      url:
+        type: string
+        description: 通知先URL
+      description:
+        type: string
+        description: 説明
+      crew_created:
+        type: boolean
+        description: 従業員情報が作成されたときに通知するかどうか
+      crew_updated:
+        type: boolean
+        description: 従業員情報が更新されたときに通知するかどうか
+      crew_deleted:
+        type: boolean
+        description: 従業員情報が削除されたときに通知するかどうか
+      crew_imported:
+        type: boolean
+        description: 従業員情報がインポートされたときに通知するかどうか
+      dependent_created:
+        type: boolean
+        description: 家族情報が作成されたときに通知するかどうか
+      dependent_updated:
+        type: boolean
+        description: 家族情報が更新されたときに通知するかどうか
+      dependent_deleted:
+        type: boolean
+        description: 家族情報が削除されたときに通知するかどうか
+      dependent_imported:
+        type: boolean
+        description: 家族情報がインポートされたときに通知するかどうか
+      expose_only_id:
+        type: boolean
+        description: 変更されたデータのIDのみ送信する
+      disabled_at:
+        type: string
+        format: date
+        description: 無効化された日時
+      access_type:
+        type: string
+        enum:
+        - read_and_update
+        - hidden
+        - read_and_update_only_origin
+        description: アクセス種別
+      updated_at:
+        type: string
+        format: date-time
+        description: 最終更新日
+      created_at:
+        type: string
+        format: date-time
+        description: 作成日
+    required:
+    - crew_created
+    - crew_updated
+    - crew_deleted
+    - crew_imported
+    - dependent_created
+    - dependent_updated
+    - dependent_deleted
+    - dependent_imported
+    - updated_at
+    - created_at
+    description: Webhook model
