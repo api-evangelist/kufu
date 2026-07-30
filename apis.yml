@@ -1,20 +1,126 @@
 aid: kufu
 name: KUFU
-description: KUFU is a company surfaced as a portfolio company of 500-global and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  KUFU, Inc. is the founding name of SmartHR, Inc., the Japanese cloud HR
+  platform, and remains the company's GitHub organization identity. SmartHR is
+  a system of record for employee data across Japanese back-office HR — hiring
+  and onboarding, social insurance and labour paperwork, family and dependent
+  records, organizational structure, payslips, and withholding tax slips. The
+  SmartHR API is a tenant-scoped REST API on a per-customer subdomain,
+  described by a live Swagger 2.0 document covering 60 paths and 120
+  operations, and is offered free to existing SmartHR customers. It ships a
+  webhook event surface, an application-gated sandbox on a separate domain, and
+  an open-source React component library, but no official client SDK.
 url: https://raw.githubusercontent.com/api-evangelist/kufu/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://smarthr.jp/_astro/ogp_a-1.BA0NIxgO.jpg
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - 500-global
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: live-openapi-and-docs
+x-legal-name: SmartHR, Inc.
+x-former-name: KUFU, Inc.
+x-country: JP
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Human Resources
+- HR Tech
+- Payroll
+- Employee Data
+- SaaS
+- Japan
+- Onboarding
+- Social Insurance
+- Webhooks
+apis:
+- aid: kufu:kufu-default-api
+  name: KUFU カスタム家族項目テンプレート API
+  description: カスタム家族項目テンプレートを操作します
+  humanURL: https://developer.smarthr.jp/api
+  baseURL: https://app.smarthr.jp/api/v1
+  tags:
+  - カスタム家族項目テンプレート
+  properties:
+  - type: OpenAPI
+    url: openapi/kufu-default-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/kufu-smarthr-webhooks.yml
+  - type: Authentication
+    url: authentication/kufu-authentication.yml
+  - type: Conventions
+    url: conventions/kufu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/kufu-problem-types.yml
+  - type: DataModel
+    url: data-model/kufu-data-model.yml
+  - type: Sandbox
+    url: sandbox/kufu-sandbox.yml
+  - type: Lifecycle
+    url: lifecycle/kufu-lifecycle.yml
+  - type: Conformance
+    url: conformance/kufu-conformance.yml
+  - type: LLMsTxt
+    url: llms/kufu-llms.txt
+  - type: Documentation
+    url: https://developer.smarthr.jp/api
+  - type: APIReference
+    url: https://developer.smarthr.jp/api
+  - type: GettingStarted
+    url: https://developer.smarthr.jp/api/about_api
+  - type: ChangeLog
+    url: https://support.smarthr.jp/ja/release-notes/api/page/1/
+- aid: kufu:kufu-webhook-api
+  name: KUFU Webhook API
+  description: Webhook を操作します
+  humanURL: https://developer.smarthr.jp/api
+  baseURL: https://app.smarthr.jp/api/v1
+  tags:
+  - Webhook
+  properties:
+  - type: OpenAPI
+    url: openapi/kufu-webhook-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/kufu-smarthr-webhooks.yml
+  - type: Authentication
+    url: authentication/kufu-authentication.yml
+  - type: Conventions
+    url: conventions/kufu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/kufu-problem-types.yml
+  - type: DataModel
+    url: data-model/kufu-data-model.yml
+  - type: Sandbox
+    url: sandbox/kufu-sandbox.yml
+  - type: Lifecycle
+    url: lifecycle/kufu-lifecycle.yml
+  - type: Conformance
+    url: conformance/kufu-conformance.yml
+  - type: LLMsTxt
+    url: llms/kufu-llms.txt
+  - type: Documentation
+    url: https://developer.smarthr.jp/api
+  - type: APIReference
+    url: https://developer.smarthr.jp/api
+  - type: GettingStarted
+    url: https://developer.smarthr.jp/api/about_api
+  - type: ChangeLog
+    url: https://support.smarthr.jp/ja/release-notes/api/page/1/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -23,3 +129,82 @@ maintainers:
 common:
 - type: Website
   url: https://smarthr.co.jp
+- type: Portal
+  url: https://smarthr.jp
+- type: DeveloperPortal
+  url: https://developer.smarthr.jp/
+- type: Documentation
+  url: https://developer.smarthr.jp/api
+- type: APIReference
+  url: https://developer.smarthr.jp/api
+- type: GettingStarted
+  url: https://developer.smarthr.jp/api/about_api
+- type: Support
+  url: https://support.smarthr.jp/ja/
+- type: HelpCenter
+  url: https://support.smarthr.jp/ja/
+- type: Blog
+  url: https://tech.smarthr.jp/
+- type: GitHubOrganization
+  url: https://github.com/kufu
+- type: Pricing
+  url: https://smarthr.jp/pricing/
+- type: SignUp
+  url: https://app.smarthr.jp/login
+- type: TermsOfService
+  url: https://smarthr.jp/terms/
+- type: PrivacyPolicy
+  url: https://smarthr.co.jp/privacy/
+- type: DesignSystem
+  url: https://smarthr.design/
+- type: OpenAPI
+  url: openapi/kufu-smarthr-openapi.json
+- type: Overlay
+  url: overlays/kufu-smarthr-overlay.yaml
+- type: Webhooks
+  url: asyncapi/kufu-smarthr-webhooks.yml
+- type: Packages
+  url: packages/kufu-packages.yml
+- type: Components
+  url: components/kufu-components.yml
+- type: WellKnown
+  url: well-known/kufu-well-known.yml
+- type: SecurityTxt
+  url: well-known/kufu-security.txt
+- type: Security
+  url: security/kufu-vulnerability-disclosure.yml
+- type: VulnerabilityDisclosure
+  url: security/kufu-vulnerability-disclosure.yml
+- type: TrustCenter
+  url: security/kufu-trust-center.yml
+- type: Compliance
+  url: security/kufu-trust-center.yml
+- type: DomainSecurity
+  url: security/kufu-domain-security.yml
+- type: Conformance
+  url: conformance/kufu-conformance.yml
+- type: Authentication
+  url: authentication/kufu-authentication.yml
+- type: Conventions
+  url: conventions/kufu-conventions.yml
+- type: ErrorCatalog
+  url: errors/kufu-problem-types.yml
+- type: DataModel
+  url: data-model/kufu-data-model.yml
+- type: Sandbox
+  url: sandbox/kufu-sandbox.yml
+- type: Lifecycle
+  url: lifecycle/kufu-lifecycle.yml
+- type: ChangeLog
+  url: changelog/kufu-changelog.yml
+- type: MCPServer
+  url: mcp/kufu-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/kufu-llms.txt
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
