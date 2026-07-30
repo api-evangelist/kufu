@@ -1,0 +1,139 @@
+generated: '2026-07-19'
+method: derived
+source: >-
+  openapi/kufu-smarthr-openapi.json, https://developer.smarthr.jp/api/about_api,
+  https://smarthr.jp/security/
+description: >-
+  Standards-conformance assertions for the SmartHR API. Each entry records
+  whether the provider conforms, with the evidence that decision rests on.
+  Negative results are real findings, not gaps in our research.
+
+standards:
+  - id: openapi
+    conforms: true
+    version: Swagger 2.0
+    evidence: >-
+      A machine-readable API description is served live from
+      https://app.smarthr.jp/api/v1/swagger_doc (462 KB, 60 paths, 120
+      operations, 111 definitions). It is Swagger 2.0, not OpenAPI 3.x, so it
+      predates the current specification generation.
+
+  - id: oauth2
+    conforms: false
+    evidence: >-
+      No OAuth 2.0 authorization server. Access tokens are minted by a tenant
+      administrator in the admin dashboard; /.well-known/oauth-authorization-server
+      returns 404 on every host probed.
+
+  - id: oidc
+    conforms: false
+    evidence: >-
+      /.well-known/openid-configuration returns 404 on app.smarthr.jp,
+      smarthr.jp, smarthr.co.jp and developer.smarthr.jp. SmartHR is a SAML SSO
+      service provider for end users, not an OIDC provider for API clients.
+
+  - id: saml
+    conforms: true
+    evidence: >-
+      SmartHR supports SAML SSO for end-user sign-in and exposes API operations
+      to manage SAML accounts (getV1UsersIdSamlUser, postV1UsersIdSamlUser,
+      patchV1UsersIdSamlUserEnable, patchV1UsersIdSamlUserDisable). This is
+      end-user authentication, not API-client authentication.
+
+  - id: scim
+    conforms: false
+    evidence: >-
+      No /scim/v2 surface and no SCIM Core/User schemas in the Swagger
+      document. Employee provisioning uses the proprietary /v1/crews resource.
+      Notable for an HR system of record — SCIM is the obvious interoperability
+      gap.
+
+  - id: rfc9457
+    conforms: false
+    evidence: >-
+      Errors use a custom JSON envelope ({code, type, message, errors}) with
+      content type application/json;charset=utf-8, not
+      application/problem+json. See errors/kufu-problem-types.yml.
+
+  - id: pagination
+    conforms: true
+    style: page-number
+    evidence: >-
+      Documented `page` and `per_page` (default 10, max 100) parameters on list
+      operations, with an RFC 5988 Link header carrying first/last/next/prev
+      and an x-total-count total. See conventions/kufu-conventions.yml.
+
+  - id: rfc5988-web-linking
+    conforms: true
+    evidence: >-
+      Paginated responses return a Link header with rel="first", rel="last",
+      rel="next" and rel="prev".
+
+  - id: idempotency
+    conforms: false
+    evidence: >-
+      No idempotency-key header is documented and none is declared in the
+      Swagger document. POST retries are not de-duplicated.
+
+  - id: rfc8594-sunset
+    conforms: false
+    evidence: >-
+      No Sunset or Deprecation headers are documented and no deprecation policy
+      is published. No operation in the spec is marked deprecated.
+
+  - id: rate-limit-headers
+    conforms: partial
+    evidence: >-
+      Rate-limit state is signalled via vendor-prefixed x-rate-limit-* and
+      x-intensive-rate-limit-* headers rather than the IETF draft
+      RateLimit-Limit / RateLimit-Remaining / RateLimit-Reset fields.
+
+  - id: json:api
+    conforms: false
+    evidence: >-
+      Plain JSON resource representations; no JSON:API document structure
+      (data/attributes/relationships envelope, application/vnd.api+json).
+
+  - id: odata
+    conforms: false
+    evidence: No OData metadata document or $filter/$select query surface.
+
+  - id: fhir
+    conforms: false
+    evidence: Not a healthcare API. No FHIR resources.
+
+  - id: fapi
+    conforms: false
+    evidence: Not a financial-grade API profile; no OAuth 2.0 at all.
+
+  - id: psd2
+    conforms: false
+    evidence: Not applicable — Japanese HR/payroll platform, not a payment service provider.
+
+  - id: asyncapi
+    conforms: false
+    evidence: >-
+      SmartHR ships a real webhook surface with nine documented event types but
+      publishes no AsyncAPI description of it. Captured as a webhook catalog in
+      asyncapi/kufu-smarthr-webhooks.yml.
+
+  - id: iso27001
+    conforms: true
+    evidence: >-
+      ISO/IEC 27001 (ISMS) certified since 2016-03-22, published at
+      https://smarthr.jp/security/. See security/kufu-trust-center.yml.
+
+  - id: soc2
+    conforms: true
+    type: Type 2
+    evidence: >-
+      SOC 2 Type 2 report (AICPA, Security criterion) obtained; disclosure
+      limited to current and prospective customers on request. Published at
+      https://smarthr.jp/security/. See security/kufu-trust-center.yml.
+
+  - id: rfc9116-security-txt
+    conforms: true
+    evidence: >-
+      PGP-signed /.well-known/security.txt served from smarthr.jp and
+      smarthr.co.jp with Contact, Expires and Acknowledgments fields. See
+      well-known/kufu-well-known.yml.

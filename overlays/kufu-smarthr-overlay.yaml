@@ -1,0 +1,147 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the SmartHR API
+  version: 1.0.0
+  x-generated: '2026-07-19'
+  x-method: generated
+  x-source: >-
+    Generated from openapi/kufu-smarthr-openapi.json plus the SmartHR developer
+    documentation (https://developer.smarthr.jp/api/about_api). Captures our
+    enhancements without mutating the original Swagger document, which is
+    stored verbatim as fetched from
+    https://app.smarthr.jp/api/v1/swagger_doc.
+  x-findings: >-
+    Three material gaps in the published document: (1) securityDefinitions is
+    absent entirely, though every operation requires an access token; (2) no
+    4xx or 5xx response is declared on any of the 120 operations; (3) the
+    document is Swagger 2.0, and its info.version ("0.0.1") describes the
+    document rather than the v1 API contract.
+
+extends: ../openapi/kufu-smarthr-openapi.json
+
+actions:
+  - target: $.info
+    description: >-
+      Clarify the contract version and record the provenance of this document.
+    update:
+      x-api-version: v1
+      x-document-format: swagger-2.0
+      x-spec-source: https://app.smarthr.jp/api/v1/swagger_doc
+      x-provider-legal-name: SmartHR, Inc.
+      x-provider-former-name: KUFU, Inc.
+      contact:
+        name: SmartHR Developer Support
+        url: https://developer.smarthr.jp/
+      x-documentation: https://developer.smarthr.jp/api
+      x-security-contact: mailto:security@smarthr.co.jp
+
+  - target: $
+    description: >-
+      Restore the missing security definitions. SmartHR documents Bearer-token
+      and HTTP Basic authentication, but the served document declares neither,
+      so generated clients ship without auth.
+    update:
+      securityDefinitions:
+        bearerToken:
+          type: apiKey
+          name: Authorization
+          in: header
+          description: >-
+            Access token issued by a tenant administrator in the SmartHR admin
+            dashboard, sent as "Bearer ACCESS_TOKEN". Swagger 2.0 has no native
+            bearer type, so this is expressed as a header apiKey.
+        basicAuth:
+          type: basic
+          description: >-
+            HTTP Basic authentication with the access token supplied as the
+            credential. Accepted as an alternative to the bearer scheme.
+      security:
+        - bearerToken: []
+
+  - target: $
+    description: >-
+      Record the tenant-per-subdomain host model. The served document hardcodes
+      host "app.smarthr.jp", but every customer calls their own subdomain, and
+      the sandbox lives on a different apex domain entirely.
+    update:
+      x-host-template: 'https://{subdomain}.smarthr.jp/api'
+      x-sandbox-host-template: 'https://{subdomain}.daruma.space/api'
+      x-tenancy: subdomain-per-tenant
+
+  - target: $
+    description: >-
+      Attach the cross-cutting runtime semantics that the document does not
+      express — pagination, sorting, rate limiting, and the error envelope.
+    update:
+      x-pagination:
+        style: page-number
+        params: [page, per_page]
+        per_page_default: 10
+        per_page_max: 100
+        response_headers: [Link, x-total-count]
+      x-sorting:
+        param: sort
+        syntax: comma-separated property names; leading hyphen for descending
+      x-rate-limits:
+        headers: ['x-rate-limit-*', 'x-intensive-rate-limit-*']
+        limits:
+          - scope: access-token
+            limit: 5000
+            window: 1h
+          - scope: access-token
+            limit: 10
+            window: 1s
+          - scope: subdomain
+            limit: 50000
+            window: 1m
+      x-error-envelope:
+        format: custom
+        content_type: application/json;charset=utf-8
+        fields: [code, type, message, errors]
+        rfc9457: false
+      x-idempotency:
+        supported: false
+      x-artifacts:
+        conventions: conventions/kufu-conventions.yml
+        errors: errors/kufu-problem-types.yml
+        authentication: authentication/kufu-authentication.yml
+        data_model: data-model/kufu-data-model.yml
+        webhooks: asyncapi/kufu-smarthr-webhooks.yml
+        sandbox: sandbox/kufu-sandbox.yml
+
+  - target: $.paths[*][?(@.operationId)]
+    description: >-
+      Flag that no failure responses are declared anywhere in the document.
+      Consumers cannot generate error handling from the spec; see
+      errors/kufu-problem-types.yml for the documented envelope and the
+      conditions we could establish from prose.
+    update:
+      x-error-responses-declared: false
+      x-error-catalog: errors/kufu-problem-types.yml
+
+  - target: $.paths['/v1/webhooks']
+    description: Link the webhook management resource to the captured event catalog.
+    update:
+      x-event-catalog: asyncapi/kufu-smarthr-webhooks.yml
+      x-webhook-auth-header: X-SmartHR-Token
+      x-webhook-signature-verification: false
+
+  - target: $.definitions.Crew
+    description: >-
+      Record the bitemporal semantics of the employee record — the single most
+      consequential modelling fact for integrators.
+    update:
+      x-temporality: bitemporal
+      x-temporality-note: >-
+        Reads return the record's state as of now. Changes may be booked with a
+        future effective date; the crew_updated webhook fires on the effective
+        date rather than at booking time.
+      x-reference-implementation: https://github.com/kufu/activerecord-bitemporal
+
+  - target: $.paths['/v1/batch_jobs']
+    description: Document the async submit-poll-download pattern for bulk work.
+    update:
+      x-async-pattern: >-
+        Submit via a job-type endpoint (crew_import, crew_export,
+        dependent_import), poll getV1BatchJobsId for completion, then retrieve
+        output through getV1BatchJobAttachmentsIdFile.

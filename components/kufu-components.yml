@@ -1,0 +1,61 @@
+generated: '2026-07-19'
+method: searched
+source: https://smarthr.design/ and https://github.com/kufu/smarthr-ui
+description: >-
+  SmartHR's client-side component surface. Unlike most providers in this
+  catalog, these are NOT embeddable widgets that render a vendor-hosted
+  experience against the SmartHR API — SmartHR UI is an open-source React
+  component library published as part of the SmartHR Design System, used to
+  build applications that look and behave like SmartHR (including third-party
+  apps listed in the SmartHR app store). Recorded here because it is a real,
+  first-party, client-side UI surface distinct from an API SDK.
+
+design_system:
+  name: SmartHR Design System
+  url: https://smarthr.design/
+  sections:
+    - Foundation — design principles and personality values
+    - Basics — logo, color, typography, icons, illustration
+    - Accessibility — quality standards and multilingual guidance
+    - Products — design tokens, components, patterns, SmartHR UI
+    - Communication — marketing/sales/CS assets
+  philosophy: >-
+    Published openly on the stated rationale that open information reduces
+    reinvention.
+
+families:
+  - name: SmartHR UI
+    kind: react-component-library
+    open_source: true
+    package: smarthr-ui
+    registry: npm
+    latest_version: 9.4.0
+    url: https://www.npmjs.com/package/smarthr-ui
+    repository: https://github.com/kufu/smarthr-ui
+    language: TypeScript
+    docs: https://smarthr.design/products/components/
+    description: >-
+      React components for creating SmartHR applications. The reference
+      implementation of the design system's Products layer.
+
+  - name: SmartHR normalize CSS
+    kind: stylesheet
+    open_source: true
+    package: smarthr-normalize-css
+    registry: npm
+    latest_version: 1.1.0
+    url: https://www.npmjs.com/package/smarthr-normalize-css
+    repository: https://github.com/kufu/smarthr-normalize-css
+    description: Shared CSS normalization baseline underpinning SmartHR UI.
+
+loader_libraries: []
+hosted_surfaces: []
+embedded_dashboards: []
+
+notes:
+  api_bound: false
+  description: >-
+    These components do not authenticate against or call the SmartHR API on
+    their own. Data binding is the integrating application's responsibility —
+    see conventions/kufu-conventions.yml and authentication/kufu-authentication.yml.
+  related_packages: packages/kufu-packages.yml

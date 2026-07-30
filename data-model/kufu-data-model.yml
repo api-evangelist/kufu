@@ -1,0 +1,227 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/kufu-smarthr-openapi.json
+description: >-
+  Entity-relationship graph for the SmartHR API, derived from the 111
+  definitions in the published Swagger 2.0 document. Relationships were
+  computed from $ref links (embedded objects and arrays) and from
+  id-reference fields. Crew (従業員 / employee) is the hub — nearly every other
+  entity hangs off it. Descriptions of Japanese HR domain terms are translated
+  from the spec's own field descriptions.
+
+root_entity: Crew
+entity_count: 111
+id_format:
+  type: string
+  scheme: opaque string ids, no documented type prefixes
+  note: >-
+    Unlike prefixed-id providers, SmartHR ids carry no type discriminator, so
+    an id alone does not identify its entity.
+
+domains:
+  - name: employee
+    entities: [Crew, CrewCustomField, CrewCustomFieldTemplate, CrewCustomFieldTemplateGroup, CrewInputForm, Image, BankAccount]
+  - name: family
+    entities: [Dependent, DependentRelation, DependentCustomField, DependentCustomFieldTemplate, MaternityChildcareLeave]
+  - name: organization
+    entities: [Company, BizEstablishment, Department, EmploymentType, Position, Grade, JobCategory, RecruitmentType, PaymentPeriod]
+  - name: payroll
+    entities: [Payroll, Payslip, Allowance, Deduction, Attendance, PayrollAggregate]
+  - name: tax
+    entities: [TaxWithholding, TaxWithholdingSlip]
+  - name: platform
+    entities: [User, SamlUser, Webhook, BatchJob, BatchJobAttachment, AddonEnabled, MailFormat, Role]
+
+entities:
+  - name: Crew
+    label: 従業員 (employee)
+    description: The employee record — the system of record for a person's HR data.
+    operations: [getV1Crews, postV1Crews, getV1CrewsId, putV1CrewsId, patchV1CrewsId, deleteV1CrewsId, putV1CrewsIdInvite]
+    relationships:
+      - to: User
+        kind: has_one
+        via: user_id
+      - to: BizEstablishment
+        kind: belongs_to
+        via: biz_establishment_id
+      - to: Image
+        kind: has_many
+        via: profile_images
+      - to: Position
+        kind: has_many
+        via: positions
+      - to: BankAccount
+        kind: has_many
+        via: bank_accounts
+      - to: Department
+        kind: has_many
+        via: departments
+      - to: CrewCustomField
+        kind: has_many
+        via: custom_fields
+      - to: Dependent
+        kind: has_many
+        via: nested route /v1/crews/{crew_id}/dependents
+      - to: MaternityChildcareLeave
+        kind: has_many
+        via: nested route /v1/crews/{crew_id}/maternity_childcare_leaves
+
+  - name: Dependent
+    label: 家族情報 (dependent / family member)
+    operations: [getV1CrewsCrewIdDependents, postV1CrewsCrewIdDependents, getV1CrewsCrewIdDependentsId, putV1CrewsCrewIdDependentsId, patchV1CrewsCrewIdDependentsId, deleteV1CrewsCrewIdDependentsId]
+    relationships:
+      - to: Crew
+        kind: belongs_to
+        via: crew_id
+      - to: DependentCustomField
+        kind: has_many
+        via: custom_fields
+      - to: DependentRelation
+        kind: has_one
+        via: relation
+
+  - name: Department
+    label: 部署 (department)
+    operations: [getV1Departments, postV1Departments, getV1DepartmentsId, putV1DepartmentsId, patchV1DepartmentsId, deleteV1DepartmentsId, postV1DepartmentsIdDiscontinue]
+    relationships:
+      - to: Company
+        kind: belongs_to
+        via: company_id
+      - to: Department
+        kind: has_many
+        via: children
+        note: Self-referential — departments form a tree.
+
+  - name: Company
+    label: 会社情報 (company)
+    operations: [getV1Companies]
+    relationships:
+      - to: Crew
+        kind: has_one
+        via: owner_id
+        note: The owning/representative employee.
+
+  - name: BizEstablishment
+    label: 事業所 (business establishment)
+    operations: [getV1BizEstablishments]
+    relationships:
+      - to: Company
+        kind: belongs_to
+        via: company_id
+      - to: Crew
+        kind: has_one
+        via: soc_ins_owner_id
+        note: Social-insurance responsible party.
+      - to: Crew
+        kind: has_one
+        via: lab_ins_owner_id
+        note: Labour-insurance responsible party.
+
+  - name: Payroll
+    label: 給与明細グループ (payroll run)
+    operations: [getV1Payrolls, postV1Payrolls, getV1PayrollsId, patchV1PayrollsId, deleteV1PayrollsId, patchV1PayrollsIdFix, patchV1PayrollsIdUnfix, patchV1PayrollsIdPublish]
+    lifecycle: draft -> fix (確定) -> publish (公開); reversible via unfix.
+    relationships:
+      - to: Payslip
+        kind: has_many
+        via: nested route /v1/payrolls/{payroll_id}/payslips
+
+  - name: Payslip
+    label: 給与明細 (payslip)
+    operations: [getV1PayrollsPayrollIdPayslips, postV1PayrollsPayrollIdPayslips, postV1PayrollsPayrollIdPayslipsBulk, getV1PayrollsPayrollIdPayslipsId, deleteV1PayrollsPayrollIdPayslipsId]
+    relationships:
+      - to: Crew
+        kind: belongs_to
+        via: crew_id
+      - to: Payroll
+        kind: belongs_to
+        via: payroll_id
+      - to: Company
+        kind: belongs_to
+        via: company_id
+      - to: Allowance
+        kind: has_many
+        via: allowances
+      - to: Deduction
+        kind: has_many
+        via: deductions
+      - to: Attendance
+        kind: has_many
+        via: attendances
+      - to: PayrollAggregate
+        kind: has_many
+        via: payroll_aggregates
+
+  - name: TaxWithholding
+    label: 源泉徴収票グループ (withholding tax slip group)
+    operations: [getV1TaxWithholdings, postV1TaxWithholdings, getV1TaxWithholdingsId, putV1TaxWithholdingsId, patchV1TaxWithholdingsId, deleteV1TaxWithholdingsId]
+    relationships:
+      - to: TaxWithholdingSlip
+        kind: has_many
+        via: nested route /v1/tax_withholdings/{tax_withholding_id}/tax_withholding_slips
+
+  - name: User
+    label: ユーザー (platform user account)
+    operations: [getV1Users, getV1UsersId]
+    relationships:
+      - to: Crew
+        kind: has_one
+        via: crew_id
+      - to: AddonEnabled
+        kind: has_many
+        via: addons
+      - to: SuppressedEmailLog
+        kind: has_many
+        via: suppressed_email_logs
+      - to: SamlUser
+        kind: has_one
+        via: nested route /v1/users/{id}/saml_user
+
+  - name: Webhook
+    label: Webhook
+    operations: [getV1Webhooks, postV1Webhooks, getV1WebhooksId, putV1WebhooksId, patchV1WebhooksId, deleteV1WebhooksId]
+    detail: asyncapi/kufu-smarthr-webhooks.yml
+
+  - name: BatchJob
+    label: バックグラウンド処理 (background job)
+    operations: [getV1BatchJobs, getV1BatchJobsId, postV1BatchJobsJobTypesCrewImport, postV1BatchJobsJobTypesCrewExport, postV1BatchJobsJobTypesDependentImport]
+    relationships:
+      - to: BatchJobAttachment
+        kind: has_many
+        via: getV1BatchJobAttachmentsIdFile
+    note: >-
+      The async work queue behind bulk import/export. Submit, then poll
+      getV1BatchJobsId, then download output via the attachment file endpoint.
+
+reference_data:
+  description: >-
+    Tenant-configurable enumerations referenced from Crew. Each is a full CRUD
+    resource rather than a fixed enum.
+  entities:
+    - {name: EmploymentType, label: 雇用形態, crew_field: employment_type}
+    - {name: Position, label: 役職, crew_field: positions}
+    - {name: Grade, label: 等級, crew_field: grade}
+    - {name: JobCategory, label: 職種, crew_field: job_category}
+    - {name: RecruitmentType, label: 採用区分, crew_field: recruitment_type}
+    - {name: PaymentPeriod, label: 給与支給形態, crew_field: payment_period}
+    - {name: DependentRelation, label: 続柄, crew_field: n/a (Dependent.relation)}
+
+extensibility:
+  mechanism: custom fields
+  description: >-
+    Tenants extend Crew and Dependent with typed custom fields.
+    CrewCustomFieldTemplate defines a field (including enum elements via
+    CrewCustomEnumFieldTemplateElement); CrewCustomFieldTemplateGroup groups
+    them for display; values ride on Crew.custom_fields.
+  entities: [CrewCustomFieldTemplate, CrewCustomFieldTemplateGroup, CrewCustomEnumFieldTemplateElement, DependentCustomFieldTemplate]
+
+temporality:
+  model: bitemporal
+  description: >-
+    HR records are effective-dated — a change can be booked now to take effect
+    later. SmartHR open-sources the same model as the activerecord-bitemporal
+    gem (packages/kufu-packages.yml). This is the single most important
+    modelling fact for integrators: reading a Crew returns its state as of now,
+    not the full history of booked changes.
+
+render: none — no subway/ diagram in this repo

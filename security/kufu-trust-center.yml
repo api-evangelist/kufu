@@ -1,0 +1,73 @@
+generated: '2026-07-19'
+method: searched
+source: https://smarthr.jp/security/
+description: >-
+  SmartHR's public security and compliance page, which doubles as its trust
+  center. It names two independently attested programs — ISO/IEC 27001 (ISMS)
+  and SOC 2 Type 2 — and lists responsible-disclosure acknowledgments. There is
+  no third-party trust-portal product (Vanta/Drata/SafeBase); the page is
+  first-party.
+
+url: https://smarthr.jp/security/
+status: 200
+first_party: true
+portal_vendor: none
+
+certifications:
+  - name: ISO/IEC 27001
+    framework: ISMS (Information Security Management System)
+    status: certified
+    certified_since: '2016-03-22'
+    scope: Information Security Management System
+    evidence: https://smarthr.jp/security/
+
+  - name: SOC 2
+    type: Type 2
+    status: report obtained
+    issuing_framework: AICPA
+    criteria:
+      - Security
+    scope: >-
+      Design and operating effectiveness of internal controls over a defined
+      period.
+    availability: >-
+      Disclosure is restricted under SOC reporting rules; the report is
+      provided to current and prospective customers on request.
+    evidence: https://smarthr.jp/security/
+
+not_claimed:
+  - PCI DSS
+  - HIPAA
+  - FedRAMP
+  - ISO/IEC 27017
+  - ISO/IEC 27018
+note_not_claimed: >-
+  These frameworks are absent from the published page. Their absence is a real
+  finding, not an unresearched gap.
+
+governance:
+  board_oversight: >-
+    Internal control is overseen through regular board sessions and ISMS
+    management reviews.
+
+vulnerability_management:
+  automated_scanning: >-
+    Regular vulnerability assessment using automated tooling.
+  third_party_testing: >-
+    Annual unscheduled vulnerability assessment by external security
+    specialists.
+  disclosure: security/kufu-vulnerability-disclosure.yml
+
+customer_assurance:
+  security_checksheet: >-
+    A downloadable security check sheet based on METI and IPA guidelines is
+    offered for customer due diligence.
+  tenant_controls:
+    - SSO (SAML)
+    - two-factor authentication
+    - IP address restriction
+    - audit logs
+  help_center: https://support.smarthr.jp/ja/
+
+data_residency:
+  published: not stated on the security page

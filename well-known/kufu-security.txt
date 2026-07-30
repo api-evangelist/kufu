@@ -1,0 +1,22 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+Contact: mailto:security@smarthr.co.jp
+Expires: 2027-01-01T00:00:00.000Z
+Acknowledgments: https://smarthr.jp/security/
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEINRgkMsWgOtbRYBL0j2U3WKXTPkFAmkuScoACgkQ0j2U3WKX
+TPmflg//aL/6uuOztuwRoS9sqHfoL2bbRdtOmqYPDFd3vwk67pZuPz5bl8noZ1W2
+T13iUrND98FVxJ/8F8Sm65HJdsaKyUdkzknxIBiYkza/nr+gqvRRCfTOssGw1uMT
+5dAJvyaARI3fJf5CVEcWmc8TvBUnUBS+ZFko/3YdcDXV6iu55NDN6C96uJ/q/eOE
+wcJdia0LP829bNId0eYxNAP0KjaQVQ5MB8Qalsw1EMg4nRu8ChISYBH+upmwp3TU
+taBgJu5p8ynzBwWWCiMV+kVGngi8iJVA3qlhP+QonlE3xb0AU4+JrotpJan3TPiV
+Op2opTsEJ/SwYIXHsI4JcK6BaSBIOQylyanV7gaCqeE2m5x8dMZn8p2cVLbxz4Rg
+GIRIeeCAcFwgrKlBXtqu+VW4Vs6Nlc5VGh9La+6kWhzARjKYi8u1/VvzBBEPJvtH
+ikoRwIeMATw8O5gnHQJ+wghH4k7bXcdvs5r4FA8lQQ+OV6pStbGtMExcLeKshW3z
+6qFnThqbripLN7/EYW3ZloSmF+zDkVT+rm1QAdqz1V1BSABgZ8bZueWTFEKGWAlz
+Tjs2IN6Q0ivXA25sqyOb7PWDyPFBwOnvIkoguKdCdwC7t+LjtnqvLZfmLNPOT49p
+4DndRD68/p6twtTTKsNL6jrzhisq4U6o8+zWS7lFD+ZkB3h3HuQ=
+=DmQu
+-----END PGP SIGNATURE-----

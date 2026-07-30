@@ -1,0 +1,71 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of https://app.smarthr.jp, https://smarthr.jp, https://smarthr.co.jp, https://developer.smarthr.jp
+description: >-
+  Well-known URI probe results for SmartHR, Inc. (formerly KUFU, Inc.). Each
+  host was probed for the standard discovery paths. Only /.well-known/security.txt
+  is published, and it is served identically (PGP-signed) from both the product
+  host (smarthr.jp) and the corporate host (smarthr.co.jp). SmartHR issues API
+  access tokens from its admin dashboard rather than an OAuth authorization
+  server, so no openid-configuration or oauth-authorization-server document
+  exists.
+
+hosts:
+  - host: smarthr.jp
+    probes:
+      - path: /.well-known/security.txt
+        status: 200
+        file: kufu-security.txt
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: smarthr.co.jp
+    probes:
+      - path: /.well-known/security.txt
+        status: 200
+        file: kufu-security.txt
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: app.smarthr.jp
+    probes:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: developer.smarthr.jp
+    probes:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+
+security_txt:
+  file: kufu-security.txt
+  signed: true
+  signature: PGP SIGNED MESSAGE (SHA256)
+  contact: mailto:security@smarthr.co.jp
+  expires: '2027-01-01T00:00:00.000Z'
+  acknowledgments: https://smarthr.jp/security/

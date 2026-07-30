@@ -1,0 +1,16 @@
+{
+  "provider": "kufu",
+  "sources": [
+    "kufu-default-api-openapi.yml",
+    "kufu-webhook-api-openapi.yml"
+  ],
+  "outputs": [
+    "kufu-default-api-openapi.yml",
+    "kufu-webhook-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

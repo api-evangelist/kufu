@@ -1,0 +1,78 @@
+generated: '2026-07-19'
+method: searched
+source: https://developer.smarthr.jp/api/about_sandbox
+description: >-
+  SmartHR's sandbox surface. SmartHR provisions a full isolated tenant on a
+  separate domain (daruma.space) rather than a test-mode flag on the production
+  host. Access is granted by application; no credit card or company details are
+  required, and no production SmartHR account is needed. Tokens behave
+  identically to production tokens — there is no test-key prefix scheme.
+
+docs:
+  - https://developer.smarthr.jp/api/about_sandbox
+  - https://developer.smarthr.jp/api/about_api
+
+modes:
+  - name: sandbox
+    base_url: https://{subdomain}.daruma.space/api
+    description: >-
+      A separate, fully isolated SmartHR tenant on the daruma.space domain.
+      Seeded with dummy employee data at provisioning.
+  - name: production
+    base_url: https://{subdomain}.smarthr.jp/api
+
+key_formats:
+  description: >-
+    None published. Sandbox and production access tokens are opaque and share
+    the same format — environments are distinguished by host, not key prefix.
+  test_prefix: none
+  live_prefix: none
+
+access:
+  method: application form
+  requires_production_account: false
+  requires_credit_card: false
+  requires_company_details: false
+  description: >-
+    Prospective integrators request sandbox access through an application form
+    linked from the developer portal; SmartHR then supplies the sandbox
+    subdomain and sign-in credentials. Access tokens are generated inside the
+    sandbox tenant the same way as in production.
+
+test_data:
+  seeded: true
+  description: >-
+    Sandbox tenants are pre-populated with dummy employee records at setup.
+  employee_limit: none — plan-based employee caps are not enforced in sandbox
+  published_test_values: >-
+    SmartHR publishes no fixed magic values, test cards, or hosted test tokens.
+    Test data is whatever exists in your seeded tenant.
+
+data_reset:
+  behavior: >-
+    SmartHR reserves the right to clean up employee data in the sandbox
+    environment without prior notice. Do not treat sandbox data as durable.
+
+behavioral_differences:
+  - area: webhook retries
+    sandbox: approximately 5 retries over roughly 8 minutes
+    production: approximately 17 retries over roughly 3 days
+    note: >-
+      In both environments the webhook is disabled once the retry budget is
+      exhausted.
+  - area: plan restrictions
+    sandbox: not enforced (unlimited test employee records)
+    production: enforced per contracted plan
+
+time_simulation:
+  supported: false
+  note: >-
+    No test-clock facility is published. However, the underlying data model is
+    bitemporal, so future-effective changes can be booked and observed
+    naturally.
+
+fixtures_and_triggers:
+  cli: none — SmartHR ships no CLI
+  trigger_tooling: >-
+    None published. Webhook events are exercised by performing real writes
+    against the sandbox tenant.

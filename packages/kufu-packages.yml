@@ -1,0 +1,125 @@
+generated: '2026-07-19'
+method: searched
+source: https://github.com/kufu — cross-checked against registry.npmjs.org and rubygems.org
+description: >-
+  First-party packages published by SmartHR, Inc. (GitHub org `kufu`, the
+  company's original name). IMPORTANT: SmartHR publishes NO official client SDK
+  for the SmartHR API — every package below is a UI, tooling, or Japanese
+  domain-logic library, not an API client. Integrators call the REST API
+  directly with an access token. Registry metadata (name, latest version,
+  description, repository) was read live from each registry.
+
+notes:
+  api_client_sdk: none published
+  ui_components: see components/kufu-components.yml
+
+registries:
+  - npm
+  - rubygems
+
+packages:
+  - name: smarthr-ui
+    registry: npm
+    official: true
+    category: ui-components
+    latest_version: 9.4.0
+    description: SmartHR ui components built with React.
+    repository: https://github.com/kufu/smarthr-ui
+    url: https://www.npmjs.com/package/smarthr-ui
+    api_client: false
+
+  - name: eslint-plugin-smarthr
+    registry: npm
+    official: true
+    category: developer-tooling
+    latest_version: 6.23.0
+    description: A sharable ESLint plugin for SmartHR
+    repository: https://github.com/kufu/tamatebako
+    url: https://www.npmjs.com/package/eslint-plugin-smarthr
+    api_client: false
+
+  - name: textlint-rule-preset-smarthr
+    registry: npm
+    official: true
+    category: developer-tooling
+    latest_version: 1.37.5
+    description: >-
+      textlint rule preset for writing in the SmartHR style (Japanese editorial
+      standard).
+    repository: https://github.com/kufu/textlint-rule-preset-smarthr
+    url: https://www.npmjs.com/package/textlint-rule-preset-smarthr
+    api_client: false
+
+  - name: smarthr-normalize-css
+    registry: npm
+    official: true
+    category: ui-components
+    latest_version: 1.1.0
+    description: A sharable normalize CSS for SmartHR
+    repository: https://github.com/kufu/smarthr-normalize-css
+    url: https://www.npmjs.com/package/smarthr-normalize-css
+    api_client: false
+
+  - name: '@smarthr/wareki'
+    registry: npm
+    official: true
+    category: domain-logic
+    latest_version: 1.3.1
+    description: Japanese "wareki" (imperial era) date formatter.
+    repository: https://github.com/kufu/tamatebako
+    url: https://www.npmjs.com/package/@smarthr/wareki
+    api_client: false
+
+  - name: activerecord-bitemporal
+    registry: rubygems
+    official: true
+    category: domain-logic
+    latest_version: 7.0.2
+    description: >-
+      Enable ActiveRecord models to be handled as BiTemporal Data — the
+      effective-dated data model SmartHR's own HR records use.
+    repository: https://github.com/kufu/activerecord-bitemporal
+    url: https://rubygems.org/gems/activerecord-bitemporal
+    api_client: false
+
+  - name: activerecord-tenant-level-security
+    registry: rubygems
+    official: true
+    category: domain-logic
+    latest_version: 0.7.0
+    description: An ActiveRecord extension for multitenancy with PostgreSQL RLS.
+    repository: https://github.com/kufu/activerecord-tenant-level-security
+    url: https://rubygems.org/gems/activerecord-tenant-level-security
+    api_client: false
+
+  - name: kiji
+    registry: rubygems
+    official: true
+    category: integration
+    latest_version: 0.3.0
+    description: API toolkits for the Japanese e-Gov system (e-Gov 外部連携API).
+    repository: https://github.com/kufu/kiji
+    url: https://rubygems.org/gems/kiji
+    api_client: false
+
+  - name: tsubaki
+    registry: rubygems
+    official: true
+    category: domain-logic
+    latest_version: 0.2.1
+    description: A gem providing My Number & Corporate Number validators.
+    repository: https://github.com/kufu/tsubaki
+    url: https://rubygems.org/gems/tsubaki
+    api_client: false
+
+  - name: kirico
+    registry: rubygems
+    official: true
+    category: domain-logic
+    latest_version: 1.1.0
+    description: >-
+      Ruby implementation of the Japanese social-insurance electronic filing
+      format (届書作成プログラム).
+    repository: https://github.com/kufu/kirico
+    url: https://rubygems.org/gems/kirico
+    api_client: false

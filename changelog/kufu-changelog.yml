@@ -1,0 +1,37 @@
+generated: '2026-07-19'
+method: searched
+source: https://support.smarthr.jp/ja/release-notes/api/page/1/
+description: >-
+  SmartHR publishes a dedicated, paginated API release-notes channel inside its
+  help center, separate from the general product release notes. The channel was
+  verified live (HTTP 200). Individual entries render client-side from the help
+  center application and are not present in the served HTML, so no entry list
+  could be captured verbatim in this pass — entries are deliberately left empty
+  rather than reconstructed.
+
+scheme: dated release notes, paginated, API-specific channel
+url: https://support.smarthr.jp/ja/release-notes/api/page/1/
+status: 200
+language: ja
+format: html (client-rendered)
+machine_readable: false
+current_version: v1
+
+entries: []
+
+entries_note: >-
+  Not captured. The release-notes list is hydrated client-side; the initial
+  HTML response contains only the help-center shell and a loading placeholder.
+  Capturing dated entries requires a headless-browser render, which this pass
+  did not perform. No entries were invented.
+
+related:
+  product_release_notes: https://support.smarthr.jp/ja/release-notes/
+  developer_portal: https://developer.smarthr.jp/
+  lifecycle: lifecycle/kufu-lifecycle.yml
+
+breaking_change_policy:
+  published: false
+  note: >-
+    No stated policy separating breaking changes from additive ones; see
+    lifecycle/kufu-lifecycle.yml.

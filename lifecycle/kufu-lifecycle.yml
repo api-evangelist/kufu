@@ -1,0 +1,59 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  https://developer.smarthr.jp/api/about_api and
+  https://support.smarthr.jp/ja/release-notes/api/page/1/
+description: >-
+  Versioning, change-communication and availability posture for the SmartHR
+  API. SmartHR versions in the URI path (v1) and communicates changes through a
+  dedicated API release-notes channel in its help center. No formal deprecation
+  policy, sunset-header practice, or public status page was found.
+
+versioning:
+  scheme: uri-path
+  current_version: v1
+  format: https://{subdomain}.smarthr.jp/api/v1/{resource}
+  spec_info_version: '0.0.1'
+  note: >-
+    info.version in the Swagger document ("0.0.1") tracks the document, not the
+    v1 contract. Only one API version has ever been published.
+
+change_communication:
+  channel: API release notes (help center)
+  url: https://support.smarthr.jp/ja/release-notes/api/page/1/
+  status: 200
+  detail: changelog/kufu-changelog.yml
+
+deprecation_policy:
+  published: false
+  sunset_header: not documented
+  deprecation_header: not documented
+  rfc8594: false
+  note: >-
+    No deprecation or sunset policy is published, and RFC 8594 Sunset /
+    Deprecation headers are not documented. Breaking-change notice is
+    communicated ad hoc through the API release notes.
+
+deprecated_operations:
+  derived_from: openapi/kufu-smarthr-openapi.json
+  count: 0
+  note: >-
+    No operation in the Swagger document carries `deprecated: true`.
+
+status_page:
+  published: false
+  note: >-
+    https://status.smarthr.jp redirects to the authenticated application login
+    (https://app.smarthr.jp/login) — there is no publicly readable status or
+    uptime page.
+
+sla:
+  published: false
+  note: >-
+    No public SLA/uptime commitment was found. Service terms are at
+    https://smarthr.jp/terms/.
+
+support:
+  help_center: https://support.smarthr.jp/ja/
+  contact: https://smarthr.jp/contact
+  security_contact: mailto:security@smarthr.co.jp

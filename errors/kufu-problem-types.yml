@@ -1,0 +1,90 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  https://developer.smarthr.jp/api/about_api — envelope shape read from the
+  developer documentation; the response-code inventory derived from
+  openapi/kufu-smarthr-openapi.json
+description: >-
+  Error catalog for the SmartHR API. SmartHR uses a custom JSON error envelope,
+  NOT RFC 9457 application/problem+json. Note a real specification gap: the
+  published Swagger 2.0 document documents only success responses (200, 201,
+  204) across all 120 operations — no 4xx or 5xx response is declared anywhere.
+  The failure semantics below therefore come from the prose documentation and
+  from the documented rate-limit behaviour, not from the spec.
+
+format: custom
+content_type: application/json;charset=utf-8
+rfc9457: false
+
+envelope:
+  fields:
+    code:
+      type: string
+      description: Machine-readable error code.
+    type:
+      type: string
+      description: Error category / classification.
+    message:
+      type: string
+      description: Human-readable error message.
+    errors:
+      type: array
+      required: false
+      description: >-
+        Present on validation failures; each element describes a field-level
+        problem.
+  docs: https://developer.smarthr.jp/api/about_api
+
+spec_coverage:
+  documented_success_codes:
+    '200': 81
+    '201': 20
+    '204': 19
+  documented_error_codes: []
+  gap: >-
+    Zero 4xx/5xx responses are declared in the Swagger document. Consumers
+    cannot generate correct error handling from the spec alone. Overlay
+    overlays/kufu-smarthr-overlay.yaml records this as a governance finding.
+
+conditions:
+  - condition: missing or invalid access token
+    expected_status: 401
+    source: documented prose (authentication is required on every operation)
+    remediation: >-
+      Supply `Authorization: Bearer ACCESS_TOKEN` with a token issued in the
+      target tenant. Tokens are tenant-scoped — a token from another subdomain
+      will not authenticate.
+
+  - condition: token lacks permission for the resource
+    expected_status: 403
+    source: documented prose (access tokens carry role-based permissions)
+    remediation: >-
+      Grant the required permission to the role attached to the access token in
+      the SmartHR admin dashboard.
+
+  - condition: resource not found / wrong tenant subdomain
+    expected_status: 404
+    source: derived from path-parameter operations in the Swagger document
+    remediation: >-
+      Verify the id and that the request host subdomain matches the tenant that
+      owns the record.
+
+  - condition: request body fails validation
+    expected_status: 422
+    source: documented prose (`errors` array describes field-level failures)
+    remediation: >-
+      Read the `errors` array and correct the named fields. Employee records
+      carry heavy Japanese statutory validation (My Number, basic pension
+      number, insurance qualification dates).
+
+  - condition: rate limit exceeded
+    expected_status: 429
+    source: https://developer.smarthr.jp/api/about_api
+    remediation: >-
+      Back off until the reset time advertised in the `x-rate-limit-*` headers.
+      A second, tighter budget is signalled by `x-intensive-rate-limit-*` for
+      the 10 requests/second burst limit. Limits are 5,000/hour and 10/second
+      per access token, and 50,000/minute per subdomain.
+    detail: conventions/kufu-conventions.yml
+
+decline_codes: not applicable — SmartHR is an HR/payroll platform, not a payment authorizer

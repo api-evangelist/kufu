@@ -1,0 +1,105 @@
+generated: '2026-07-19'
+method: generated
+source: >-
+  openapi/kufu-smarthr-openapi.json plus the SmartHR developer documentation at
+  https://developer.smarthr.jp/
+description: >-
+  Packaged Agent Skills for the SmartHR API (SmartHR, Inc., formerly KUFU,
+  Inc.). Each skill covers one marquee flow and is grounded in operationIds
+  read verbatim from the published Swagger 2.0 document — no operation name
+  here is invented. SmartHR publishes no AGENTS.md or first-party skills of its
+  own; these are API Evangelist generations.
+
+provider_published_skills: none found
+searched:
+  - https://developer.smarthr.jp/
+  - https://github.com/kufu
+
+api:
+  name: SmartHR API
+  version: v1
+  base_url: https://{subdomain}.smarthr.jp/api
+  auth: Bearer access token, tenant-scoped
+  spec: openapi/kufu-smarthr-openapi.json
+
+skills:
+  - name: kufu-employee-onboarding
+    file: kufu-employee-onboarding.md
+    summary: >-
+      Provision a new hire — resolve reference data, create the Crew record,
+      register dependents, and send the self-service invitation.
+    operations:
+      - getV1EmploymentTypes
+      - getV1Departments
+      - getV1BizEstablishments
+      - postV1Crews
+      - postV1CrewsCrewIdDependents
+      - putV1CrewsIdInvite
+      - getV1CrewsId
+    mutating: true
+
+  - name: kufu-payroll-run
+    file: kufu-payroll-run.md
+    summary: >-
+      Deliver an externally calculated payroll run — create the payroll group,
+      bulk-load payslips, fix, then publish to employees.
+    operations:
+      - getV1Crews
+      - postV1Payrolls
+      - postV1PayrollsPayrollIdPayslipsBulk
+      - postV1PayrollsPayrollIdPayslips
+      - getV1PayrollsPayrollIdPayslips
+      - patchV1PayrollsIdFix
+      - patchV1PayrollsIdPublish
+      - patchV1PayrollsIdUnfix
+      - getV1PayrollsId
+    mutating: true
+
+  - name: kufu-employee-sync
+    file: kufu-employee-sync.md
+    summary: >-
+      Mirror employee and family data into a downstream system — async
+      snapshot, webhook registration, safe event consumption, and periodic
+      reconciliation.
+    operations:
+      - postV1Webhooks
+      - getV1Webhooks
+      - patchV1WebhooksId
+      - deleteV1WebhooksId
+      - getV1Crews
+      - getV1CrewsId
+      - getV1CrewsCrewIdDependents
+      - postV1BatchJobsJobTypesCrewExport
+      - getV1BatchJobsId
+      - getV1BatchJobAttachmentsIdFile
+    mutating: partial
+
+cross_cutting_rules:
+  idempotency: >-
+    Not supported. No idempotency key exists, so a retried POST can duplicate
+    records. Every skill reconciles by reading before retrying.
+  rate_limits: >-
+    5,000/hour and 10/second per access token; 50,000/minute per subdomain.
+    Watch x-rate-limit-* and x-intensive-rate-limit-* headers.
+  pagination: >-
+    page / per_page (max 100), with an RFC 5988 Link header and x-total-count.
+  errors: >-
+    Custom envelope {code, type, message, errors}; not RFC 9457. See
+    errors/kufu-problem-types.yml.
+  temporality: >-
+    Records are bitemporal. Reads return state as of now; future-effective
+    changes fire webhooks on the effective date.
+  data_sensitivity: >-
+    This API holds regulated Japanese personal data — My Number, basic pension
+    numbers, bank accounts, salary, disability status, residency documents.
+    Default to read-only, require human confirmation for writes, exclude
+    destructive operations, and never route My Number values through an agent
+    context.
+
+related:
+  conventions: conventions/kufu-conventions.yml
+  authentication: authentication/kufu-authentication.yml
+  data_model: data-model/kufu-data-model.yml
+  webhooks: asyncapi/kufu-smarthr-webhooks.yml
+  mcp: mcp/kufu-mcp.yml
+  sandbox: sandbox/kufu-sandbox.yml

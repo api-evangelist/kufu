@@ -1,0 +1,27 @@
+generated: '2026-07-19'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: smarthr.co.jp
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 26 17:16:13 2026 GMT
+  hsts: false
+- host: app.smarthr.jp
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 17 16:05:33 2026 GMT
+  hsts: false
+domains:
+- domain: smarthr.co.jp
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
+- domain: smarthr.jp
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
