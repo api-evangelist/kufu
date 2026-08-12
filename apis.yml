@@ -158,7 +158,7 @@ common:
 - type: DesignSystem
   url: https://smarthr.design/
 - type: OpenAPI
-  url: openapi/kufu-smarthr-openapi.json
+  url: openapi/_original/kufu-smarthr-openapi.json
 - type: Overlay
   url: overlays/kufu-smarthr-overlay.yaml
 - type: Webhooks
