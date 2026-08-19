@@ -34,7 +34,7 @@ x-tier-reason: live-openapi-and-docs
 x-legal-name: SmartHR, Inc.
 x-former-name: KUFU, Inc.
 x-country: JP
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-07-19'
 tags:
