@@ -1,0 +1,2588 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SmartHR カスタム家族項目テンプレート API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "カスタム家族項目テンプレート",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/dependent_custom_field_templates",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              }
+            ]
+          },
+          "docs": "カスタム家族項目をリストで取得します。\n"
+        },
+        {
+          "info": {
+            "name": "取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/crew_custom_field_template_groups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "カスタム従業員項目グループID"
+              },
+              {
+                "name": "embed",
+                "value": "",
+                "type": "query",
+                "description": "埋め込むオブジェクト"
+              }
+            ]
+          },
+          "docs": "指定した ID のカスタム従業員項目グループ情報を取得します。\n\n`embed=templates` を指定すると、そのグループに属するカスタム項目テンプレート情報も合わせて取得できます。\n"
+        },
+        {
+          "info": {
+            "name": "更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/crew_custom_field_template_groups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "カスタム従業員項目グループID"
+              }
+            ]
+          },
+          "docs": "指定した ID のカスタム従業員項目グループ情報を更新します。\n未指定の属性は情報が削除されます。未指定の属性を消したくない場合は「部分更新」をご利用ください。\n\n以下のスキーマで JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\n```\n{\n  \"name\": \"string\",\n  \"position\": 0\n}\n```\n"
+        },
+        {
+          "info": {
+            "name": "部分更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/crew_custom_field_template_groups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "カスタム従業員項目グループID"
+              }
+            ]
+          },
+          "docs": "指定した ID のカスタム従業員項目グループ情報を部分更新します。\n\n以下のスキーマで JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\n```\n{\n  \"name\": \"string\",\n  \"position\": 0\n}\n```\n"
+        },
+        {
+          "info": {
+            "name": "削除",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/crew_custom_field_template_groups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "カスタム従業員項目グループID"
+              }
+            ]
+          },
+          "docs": "指定した ID のカスタム従業員項目グループ情報を削除します。\n\n**グループに属するカスタム項目テンプレート、およびそれらのテンプレートに対して設定されている値がすべて削除されます。**\n"
+        },
+        {
+          "info": {
+            "name": "リスト取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/crew_custom_field_template_groups",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "embed",
+                "value": "",
+                "type": "query",
+                "description": "埋め込むオブジェクト"
+              }
+            ]
+          },
+          "docs": "カスタム従業員項目グループをリストで取得します。\n\n`embed=templates` を指定すると、そのグループに属するカスタム項目テンプレート情報も合わせて取得できます。\n"
+        },
+        {
+          "info": {
+            "name": "登録",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/crew_custom_field_template_groups"
+          },
+          "docs": "カスタム従業員項目グループを新規登録します。\n\n以下のスキーマで JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\n```\n{\n  \"name\": \"string\",\n  \"position\": 0\n}\n```\n"
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/crew_custom_field_templates",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "embed",
+                "value": "",
+                "type": "query",
+                "description": "埋め込むオブジェクト"
+              }
+            ]
+          },
+          "docs": "カスタム従業員項目をリストで取得します。\n\n`embed=group` を指定すると、属するカスタム項目グループ情報も合わせて取得できます。（ `group_id` が `group` に置き換わります）\n"
+        },
+        {
+          "info": {
+            "name": "登録",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/crew_custom_field_templates"
+          },
+          "docs": "カスタム従業員項目を新規登録します。\n\nBODY SAMPLE と BODY SCHEMA を参考に JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\nJSON 例\n```\n{\n  \"name\": \"身長\",\n  \"type\": \"decimal\",\n  \"scale\": 1\n}\n```\n\nなお、種別がドロップダウンリスト項目（type: enum）の時のみ、 `elements` アトリビュートで要素を指定できます。\n\nJSON 例\n```\n{\n  \"name\": \"血液型\",\n  \"type\": \"enum\",\n  \"elements\": [\n    { \"name\": \"A型\", \"position\": 1 },\n    { \"name\": \"B型\", \"position\": 2 },\n    ...\n  ]\n}\n```\n"
+        },
+        {
+          "info": {
+            "name": "取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/crew_custom_field_templates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "カスタム従業員項目ID"
+              },
+              {
+                "name": "embed",
+                "value": "",
+                "type": "query",
+                "description": "埋め込むオブジェクト"
+              }
+            ]
+          },
+          "docs": "指定した ID のカスタム従業員項目情報を取得します。\n\n`embed=group` を指定すると、属するカスタム項目グループ情報も合わせて取得できます。（ `group_id` が `group` に置き換わります）\n"
+        },
+        {
+          "info": {
+            "name": "更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/crew_custom_field_templates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "カスタム従業員項目ID"
+              }
+            ]
+          },
+          "docs": "指定した ID のカスタム従業員項目情報を更新します。\n未指定の属性は情報が削除されます。未指定の属性を消したくない場合は「部分更新」をご利用ください。\n\nBODY SAMPLE と BODY SCHEMA を参考に JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\nJSON 例\n```\n{\n  \"name\": \"身長\",\n  \"type\": \"decimal\",\n  \"scale\": 1\n}\n```\n\nなお、種別がドロップダウンリスト項目（type: enum）の時のみ、 `elements` アトリビュートで要素を指定できます。\n\n既存の elements 要素を更新する場合は `id` を指定してください。この時、指定されなかった既存の要素はすべて削除されます。\n\nJSON 例\n```\n{\n  \"name\": \"血液型\",\n  \"type\": \"enum\",\n  \"elements\": [\n    { \"id\", 1, \"name\": \"A型\", \""
+        },
+        {
+          "info": {
+            "name": "部分更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/crew_custom_field_templates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "カスタム従業員項目ID"
+              }
+            ]
+          },
+          "docs": "指定した ID のカスタム従業員項目情報を部分更新します。\n\nBODY SAMPLE と BODY SCHEMA を参考に JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\nJSON 例\n```\n{\n  \"name\": \"身長\",\n  \"type\": \"decimal\",\n  \"scale\": 1\n}\n```\n\nなお、種別がドロップダウンリスト項目（type: enum）の時のみ、 `elements` アトリビュートで要素を指定できます。\n\n既存の elements 要素を更新する場合は `id` を指定してください。\n\nJSON 例\n```\n{\n  \"name\": \"血液型\",\n  \"type\": \"enum\",\n  \"elements\": [\n    { \"id\", 1, \"name\": \"A型\", \"position\": 1 },\n    { \"name\": \"AB型\", \"position\": 3 },\n    ...\n  ]\n}\n```\n"
+        },
+        {
+          "info": {
+            "name": "削除",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/crew_custom_field_templates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "カスタム従業員項目ID"
+              }
+            ]
+          },
+          "docs": "指定した ID のカスタム従業員項目情報を削除します。\n\n**テンプレートに対して設定されている値がすべて削除されます。**\n"
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/batch_jobs",
+            "params": [
+              {
+                "name": "embed",
+                "value": "",
+                "type": "query",
+                "description": "埋め込むオブジェクト"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "並び順"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              }
+            ]
+          },
+          "docs": "バックグラウンド処理をリストで取得します。\n"
+        },
+        {
+          "info": {
+            "name": "取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/batch_jobs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "BatchJob ID"
+              },
+              {
+                "name": "embed",
+                "value": "",
+                "type": "query",
+                "description": "埋め込むオブジェクト"
+              }
+            ]
+          },
+          "docs": "指定した ID のバックグラウンド処理を取得します。\n"
+        },
+        {
+          "info": {
+            "name": "従業員情報ダウンロードの登録",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/batch_jobs/job_types/crew_export"
+          },
+          "docs": "バックグラウンド処理（従業員情報ダウンロード）を登録します。\n\nBODY SAMPLE と BODY SCHEMA を参考に JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\nJSON 例\n```\n{\n  \"crew_export_format_id\": \"8d155019-0a3d-4c75-ab5e-8948a0d7b423\"\n}\n```\n\n事前にカスタムダウンロードフォーマットを作成し、その ID を指定してください。ID は URL のパスより確認が可能です。\n\n例: 「/admin/crew_export_formats/8d155019-0a3d-4c75-ab5e-8948a0d7b423」であれば「8d155019-0a3d-4c75-ab5e-8948a0d7b423」\n"
+        },
+        {
+          "info": {
+            "name": "従業員一括登録・更新の登録",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/batch_jobs/job_types/crew_import"
+          },
+          "docs": "バックグラウンド処理（従業員一括登録・更新）を登録します。\n\nBODY SAMPLE と BODY SCHEMA を参考に JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\nJSON 例\n```\n{\n  \"mode\": \"insert\",\n  \"file\": {\n    \"name\": \"sample.csv\",\n    \"content\": \"5YiXMSzliJcyCmEsYgpjLGQKZSxmCg==\"\n  }\n}\n```\n"
+        },
+        {
+          "info": {
+            "name": "家族情報一括更新の登録",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/batch_jobs/job_types/dependent_import"
+          },
+          "docs": "バックグラウンド処理（家族情報一括更新）を登録します。\n\nBODY SAMPLE と BODY SCHEMA を参考に JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\nJSON 例\n```\n{\n  \"file\": {\n    \"name\": \"sample.csv\",\n    \"content\": \"5YiXMSzliJcyCmEsYgpjLGQKZSxmCg==\"\n  }\n}\n```\n"
+        },
+        {
+          "info": {
+            "name": "ファイル取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/batch_job_attachments/:id/file",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "BatchJobAttachment ID"
+              }
+            ]
+          },
+          "docs": "指定した ID のバックグラウンド処理添付ファイルを取得します。\n\n取得してから5分後にファイルは削除され、アクセスできなくなります。\n"
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/mail_formats",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "embed",
+                "value": "",
+                "type": "query",
+                "description": "埋め込むオブジェクト"
+              }
+            ]
+          },
+          "docs": "メールフォーマット情報をリストで取得します。\n"
+        },
+        {
+          "info": {
+            "name": "取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/mail_formats/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "メールフォーマットID"
+              },
+              {
+                "name": "embed",
+                "value": "",
+                "type": "query",
+                "description": "埋め込むオブジェクト"
+              }
+            ]
+          },
+          "docs": "指定した ID のメールフォーマット情報を取得します。\n"
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/users",
+            "params": [
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "並び順"
+              },
+              {
+                "name": "embed",
+                "value": "",
+                "type": "query",
+                "description": "埋め込むオブジェクト"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              }
+            ]
+          },
+          "docs": "ユーザー情報をリストで取得します。\n\n**招待のステータスについて**\n\nユーザーに送信した招待は項目の値によって以下のように判定できます。\n\n- 従業員登録済み\n    - `invitation_answered_at` に値が入っている\n- ユーザー登録済み\n    - `invitation_created_at` が `null` である\n- 招待メール開封済み\n    - `invitation_opened_at` に値が入っている\n- 招待メール送信済み\n    - `invitation_created_at` に値が入っている\n\n**招待メールの送信エラーについて**\n\nメールフィルターやアドレス不備によって送信されない場合は `suppressed_email_logs` にエラー内容が記載されます。\n\n詳しくは [メールが届かない場合の原因は？](https://support.smarthr.jp/ja/help/articles/360026264593/) をご確認ください。\n\n- bounced\n    - バウンス\n- spam_reported\n  "
+        },
+        {
+          "info": {
+            "name": "取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ユーザーID"
+              },
+              {
+                "name": "embed",
+                "value": "",
+                "type": "query",
+                "description": "埋め込むオブジェクト"
+              }
+            ]
+          },
+          "docs": "指定した ID のユーザー情報を取得します。\n"
+        },
+        {
+          "info": {
+            "name": "SAML SSOアカウントを取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/users/:id/saml_user",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ユーザーID"
+              }
+            ]
+          },
+          "docs": "指定した ID のユーザーの「SAML SSOアカウント」を取得します。\n利用には SAML/SSOオプションの契約が必要です。\n"
+        },
+        {
+          "info": {
+            "name": "SAML SSOアカウントの作成",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/users/:id/saml_user",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ユーザーID"
+              }
+            ]
+          },
+          "docs": "指定した ID のユーザーのSAML SSOアカウントを作成します。\n利用には SAML/SSOオプションの契約が必要です。\n"
+        },
+        {
+          "info": {
+            "name": "SAML SSOアカウントを更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/users/:id/saml_user",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ユーザーID"
+              }
+            ]
+          },
+          "docs": "指定した ID のユーザーのSAML SSOアカウントを更新します。\n利用には SAML/SSOオプションの契約が必要です。\n"
+        },
+        {
+          "info": {
+            "name": "SAML SSOアカウントを削除",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/users/:id/saml_user",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ユーザーID"
+              }
+            ]
+          },
+          "docs": "指定した ID のユーザーのSAML SSOアカウントを削除します。\n利用には SAML/SSOオプションの契約が必要です。\n"
+        },
+        {
+          "info": {
+            "name": "SAML SSOアカウントを有効に変更",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/users/:id/saml_user/enable",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ユーザーID"
+              }
+            ]
+          },
+          "docs": "指定した ID のユーザーのSAML SSOアカウントを有効状態に変更します。\n利用には SAML/SSOオプションの契約が必要です。\n"
+        },
+        {
+          "info": {
+            "name": "SAML SSOアカウントを無効に変更",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/users/:id/saml_user/disable",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ユーザーID"
+              }
+            ]
+          },
+          "docs": "指定した ID のユーザーのSAML SSOアカウントを無効状態に変更します。\n利用には SAML/SSOオプションの契約が必要です。\n"
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/biz_establishments",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "embed",
+                "value": "",
+                "type": "query",
+                "description": "埋め込むオブジェクト"
+              }
+            ]
+          },
+          "docs": "事業所情報をリストで取得します。\n"
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/companies",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "embed",
+                "value": "",
+                "type": "query",
+                "description": "埋め込むオブジェクト"
+              }
+            ]
+          },
+          "docs": "会社情報をリストで取得します。\n"
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/bank_account_settings",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              }
+            ]
+          },
+          "docs": "口座情報をリストで取得します。\n"
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/crews/:crew_id/dependents",
+            "params": [
+              {
+                "name": "crew_id",
+                "value": "",
+                "type": "path",
+                "description": "従業員ID"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              }
+            ]
+          },
+          "docs": "指定した従業員に紐づく家族情報をリストで取得します。\n\n**カスタム項目の表現について**\n\n`custom_fields` に含まれるカスタム項目設定値は、テンプレート種別によって形式が変わります。\n\n- テキスト（1行）（type: string）\n    - String 型\n- テキスト（複数行）（type: text）\n    - String 型\n- 数値（type: decimal）\n    - Integer 型\n- 日付（type: date）\n    - `yyyy-MM-dd` 形式の String 型\n- ドロップダウンリスト（type: enum）\n    - ドロップダウンリスト項目の ID（String 型）\n    - ドロップダウンリスト項目に `physical_name` が設定されている場合は、その値（String 型）\n- ファイル（type: file）\n    - アップロードしたファイルへの期限付き URL（String 型）\n\n"
+        },
+        {
+          "info": {
+            "name": "登録",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/crews/:crew_id/dependents",
+            "params": [
+              {
+                "name": "crew_id",
+                "value": "",
+                "type": "path",
+                "description": "従業員ID"
+              }
+            ]
+          },
+          "docs": "家族情報を新規登録します。\n\nBODY SAMPLE と BODY SCHEMA を参考に JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\nJSON 例\n```\n{\n  \"last_name\": \"山田\",\n  \"first_name\": \"太郎\",\n  \"relation_id\": \"xxxx\",\n  \"gender\": \"male\",\n  \"birth_at\": \"1960-01-01\",\n  \"live_together_type\": \"living_together\"\n}\n```\n\n- `tax_law_support_type` パラメータを指定しない場合、`supported` を設定します。\n- `social_insurance_support_type` パラメータを指定しない場合、`supported` を設定します。\n\n**カスタム項目の値の設定について**\n\nカスタム項目の値の設定は `custom_fields` パラメータで行"
+        },
+        {
+          "info": {
+            "name": "取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/crews/:crew_id/dependents/:id",
+            "params": [
+              {
+                "name": "crew_id",
+                "value": "",
+                "type": "path",
+                "description": "従業員ID"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "家族ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の家族情報を取得します。\n\n**カスタム項目の表現について**\n\n`custom_fields` に含まれるカスタム項目設定値は、テンプレート種別によって形式が変わります。\n\n- テキスト（1行）（type: string）\n    - String 型\n- テキスト（複数行）（type: text）\n    - String 型\n- 数値（type: decimal）\n    - Integer 型\n- 日付（type: date）\n    - `yyyy-MM-dd` 形式の String 型\n- ドロップダウンリスト（type: enum）\n    - ドロップダウンリスト項目の ID（String 型）\n    - ドロップダウンリスト項目に `physical_name` が設定されている場合は、その値（String 型）\n- ファイル（type: file）\n    - アップロードしたファイルへの期限付き URL（String 型）\n"
+        },
+        {
+          "info": {
+            "name": "更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/crews/:crew_id/dependents/:id",
+            "params": [
+              {
+                "name": "crew_id",
+                "value": "",
+                "type": "path",
+                "description": "従業員ID"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "家族ID"
+              }
+            ]
+          },
+          "docs": "**このエンドポイントは利用非推奨です**\n\nこのエンドポイント自体は利用可能ですが、挙動は部分更新と同等になります。\nリクエスト元の制限で PATCH メソッドが使用できないような場合に、エイリアスとしてご利用ください。\n"
+        },
+        {
+          "info": {
+            "name": "部分更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/crews/:crew_id/dependents/:id",
+            "params": [
+              {
+                "name": "crew_id",
+                "value": "",
+                "type": "path",
+                "description": "従業員ID"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "家族ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の家族情報を部分更新します。\n\nBODY SAMPLE と BODY SCHEMA を参考に JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\nJSON 例\n```\n{\n  \"last_name\": \"山田\",\n  \"first_name\": \"五朗\"\n}\n```\n\n**カスタム項目の値の設定について**\n\nカスタム項目の値の設定は `custom_fields` パラメータで行ないます。 `value` に設定する値は、テンプレート種別に対応させてください。\n\nJSON 例\n```\n{\n  \"custom_fields\": [\n    {\n      \"template_id\": \"1234567a-123a-123a-123a-123456789aa\",\n      \"value\": \"string\"\n    },\n    {\n      \"template_id\": \"1234567a-123a-123a-123a-123456789"
+        },
+        {
+          "info": {
+            "name": "削除",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/crews/:crew_id/dependents/:id",
+            "params": [
+              {
+                "name": "crew_id",
+                "value": "",
+                "type": "path",
+                "description": "従業員ID"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "家族ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の家族情報を削除します。\n"
+        },
+        {
+          "info": {
+            "name": "取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/job_titles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "役職ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の役職情報を取得します。\n"
+        },
+        {
+          "info": {
+            "name": "更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/job_titles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "役職ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の役職情報を更新します。\n\nなお、適用日を迎えていない従業員情報の更新が予定されている役職の更新はできません。\n"
+        },
+        {
+          "info": {
+            "name": "部分更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/job_titles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "役職ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の役職情報を部分更新します。\n更新できるのは  役職の名前(name), 役職のランク(rank), 役職コード(code) です。\n\nなお、適用日を迎えていない従業員情報の更新が予定されている役職の更新はできません。\n"
+        },
+        {
+          "info": {
+            "name": "削除",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/job_titles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "役職ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の役職情報を削除します。\n\nなお、適用日を迎えていない従業員情報の更新が予定されている役職の削除はできません。\n"
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/job_titles",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "並び順"
+              }
+            ]
+          },
+          "docs": "役職情報をリストで取得します。\n"
+        },
+        {
+          "info": {
+            "name": "作成",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/job_titles"
+          },
+          "docs": "役職情報を新規登録します。\n"
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/crews",
+            "params": [
+              {
+                "name": "emp_code",
+                "value": "",
+                "type": "query",
+                "description": "社員番号"
+              },
+              {
+                "name": "emp_type",
+                "value": "",
+                "type": "query",
+                "description": "雇用形態の preset_type。本パラメーターは非推奨であり、代わりにemployment_type_id の利用を推奨します。"
+              },
+              {
+                "name": "employment_type_id",
+                "value": "",
+                "type": "query",
+                "description": "雇用形態ID（カンマ区切り）"
+              },
+              {
+                "name": "emp_status",
+                "value": "",
+                "type": "query",
+                "description": "在籍状況"
+              },
+              {
+                "name": "gender",
+                "value": "",
+                "type": "query",
+                "description": "戸籍上の性別"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "並び順"
+              },
+              {
+                "name": "entered_at_from",
+                "value": "",
+                "type": "query",
+                "description": "指定した日以降に入社した従業員に絞り込みます"
+              },
+              {
+                "name": "entered_at_to",
+                "value": "",
+                "type": "query",
+                "description": "指定した日以前に入社した従業員に絞り込みます"
+              },
+              {
+                "name": "resigned_at_from",
+                "value": "",
+                "type": "query",
+                "description": "指定した日以降に退職した従業員に絞り込みます"
+              },
+              {
+                "name": "resigned_at_to",
+                "value": "",
+                "type": "query",
+                "description": "指定した日以前に退職した従業員に絞り込みます"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "ユーザーID（カンマ区切り）"
+              },
+              {
+                "name": "department_id",
+                "value": "",
+                "type": "query",
+                "description": "取得したい従業員の所属する部署ID（カンマ区切り）"
+              },
+              {
+                "name": "position_id",
+                "value": "",
+                "type": "query",
+                "description": "取得したい従業員の役職ID（カンマ区切り）"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "氏名・ビジネスネーム・部署名・役職名でフリーワード検索をします"
+              },
+              {
+                "name": "prefer_business_name",
+                "value": "",
+                "type": "query",
+                "description": "氏名・ビジネスネーム・部署名・役職名でフリーワード検索をする際にビジネスネームを優先して検索するかどうか"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "取得したい従業員のID（カンマ区切り）"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "取得する項目名（カンマ区切り）"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              }
+            ]
+          },
+          "docs": "指定した条件に合致する従業員をリストで取得します。\n\n**雇用形態の表現について**\n\n雇用形態データの構造変更に伴い、`emp_type` 項目の利用は非推奨となりました。\n今後は `employment_type` 項目をご利用ください。\n\nなお、`emp_type` 項目には、登録されている雇用形態が「プリセット雇用形態」の時のみ、その preset_type の値が入ります。出力形式は従来と変更ありません。\n\n**部署の表現について**\n\n部署データの構造変更に伴い、`department` 項目の利用は非推奨となりました。\n今後は `departments` 項目をご利用ください。\n\nなお、`department` 項目には、1番目に登録されている部署について、各階層の名称を `/` で連結した文字列が出力されます。\n\n**役職の表現について**\n\n役職データの構造変更に伴い、`position` 項目の利用は非推奨となりました。\n今後は `positions` 項目をご利用ください。\n\n**社会保険の資格取得年月日・社会保険の資格喪失年月日の表現について**\n\n社会保険デー"
+        },
+        {
+          "info": {
+            "name": "登録",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/crews"
+          },
+          "docs": "従業員情報を新規登録します。\n\nBODY SAMPLE と BODY SCHEMA を参考に JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\nJSON 例\n```\n{\n  \"last_name\": \"山田\",\n  \"first_name\": \"太郎\",\n  \"gender\": \"male\"\n}\n```\n\n新規登録に際して、特に必須項目はありません。\n\nレスポンスヘッダーの `Location` には **SmartHR 上でのエンドポイント URL** が含まれます。\n\n**雇用形態の設定について**\n\n雇用形態データの構造変更に伴い、`emp_type` パラメータの利用は非推奨となりました。\n今後は `employment_type_id` パラメータをご利用ください。\n\nなお、`emp_type` パラメータに雇用形態種別を指定した場合は、以下のような挙動になります。\n\n- 指定した雇用形態種別を preset_type に持つ雇用形態が設定されま"
+        },
+        {
+          "info": {
+            "name": "取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/crews/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "従業員ID"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "取得する項目名（カンマ区切り）"
+              }
+            ]
+          },
+          "docs": "指定した ID の従業員情報を取得します。\n\n**雇用形態の表現について**\n\n雇用形態データの構造変更に伴い、`emp_type` 項目の利用は非推奨となりました。\n今後は `employment_type` 項目をご利用ください。\n\nなお、`emp_type` 項目には、登録されている雇用形態が「プリセット雇用形態」の時のみ、その preset_type の値が入ります。出力形式は従来と変更ありません。\n\n**部署の表現について**\n\n部署データの構造変更に伴い、`department` 項目の利用は非推奨となりました。\n今後は `departments` 項目をご利用ください。\n\nなお、`department` 項目には、1番目に登録されている部署について、各階層の名称を `/` で連結した文字列が出力されます。\n\n**役職の表現について**\n\n役職データの構造変更に伴い、`position` 項目の利用は非推奨となりました。\n今後は `positions` 項目をご利用ください。\n\n**社会保険の資格取得年月日・社会保険の資格喪失年月日の表現について**\n\n社会保険データの構造"
+        },
+        {
+          "info": {
+            "name": "更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/crews/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "従業員ID"
+              }
+            ]
+          },
+          "docs": "**このエンドポイントは利用非推奨です**\n\n2020年12月16日より、従業員の更新は「部分更新（PATCH ）」のみの提供となりました。\nこのエンドポイント自体は利用可能ですが、挙動は部分更新と同等になります。\nリクエスト元の制限で PATCH メソッドが使用できないような場合に、エイリアスとしてご利用ください。\n"
+        },
+        {
+          "info": {
+            "name": "部分更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/crews/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "従業員ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の従業員情報を部分更新します。\n\nBODY SAMPLE と BODY SCHEMA を参考に JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\nJSON 例\n```\n{\n  \"last_name\": \"山田\",\n  \"first_name\": \"太郎\",\n  \"gender\": \"male\"\n}\n```\n\n以下の項目が入力済みの従業員に対して、**これらのいずれかを欠けさせる**更新はできません。\n- last_name\n- first_name\n- last_name_yomi\n- first_name_yomi\n- gender\n- birth_at\n- address\n\n\n**雇用形態の設定について**\n\n雇用形態データの構造変更に伴い、`emp_type` パラメータの利用は非推奨となりました。\n今後は `employment_type_id` パラメータをご利用ください。\n\nなお、`emp_type` パラメータに雇用形態種別を"
+        },
+        {
+          "info": {
+            "name": "削除",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/crews/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "従業員ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の従業員情報を削除します。\n"
+        },
+        {
+          "info": {
+            "name": "招待",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/crews/:id/invite",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "従業員ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の従業員に設定されているメールアドレスでユーザーを招待します。\n\n- 指定した従業員情報収集フォームに紐づくメールフォーマットで招待メールが送信されます\n- 一度招待した従業員に対する2回目以降の招待リクエストは、再招待扱いになります\n    - 従業員のメールアドレスが変わっていた場合は、招待中ユーザーのメールアドレスが更新されます\n    - 招待を承認済みの従業員に対しての再招待はできません\n- 招待者のユーザーには管理者権限を持つユーザーを指定してください\n- 権限はメンバー権限が適用されます（権限の指定はできません）\n"
+        },
+        {
+          "info": {
+            "name": "部署情報の削除",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/crews/:crew_id/departments",
+            "params": [
+              {
+                "name": "crew_id",
+                "value": "",
+                "type": "path",
+                "description": "従業員ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の従業員の部署情報を削除します。\n"
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/crew_input_forms",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "embed",
+                "value": "",
+                "type": "query",
+                "description": "埋め込むオブジェクト"
+              }
+            ]
+          },
+          "docs": "従業員情報収集フォーム情報をリストで取得します。\n"
+        },
+        {
+          "info": {
+            "name": "取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/crew_input_forms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "従業員情報収集フォームID"
+              },
+              {
+                "name": "embed",
+                "value": "",
+                "type": "query",
+                "description": "埋め込むオブジェクト"
+              }
+            ]
+          },
+          "docs": "指定した ID の従業員情報収集フォーム情報を取得します。\n"
+        },
+        {
+          "info": {
+            "name": "取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/recruitment_types/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "採用区分ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の採用区分情報を取得します。\n"
+        },
+        {
+          "info": {
+            "name": "更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/recruitment_types/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "採用区分ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の採用区分情報を更新します。\n\nなお、適用日を迎えていない従業員情報の更新が予定されている採用区分の更新はできません。\n"
+        },
+        {
+          "info": {
+            "name": "部分更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/recruitment_types/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "採用区分ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の採用区分情報を部分更新します。\n\nなお、適用日を迎えていない従業員情報の更新が予定されている採用区分の更新はできません。\n"
+        },
+        {
+          "info": {
+            "name": "削除",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/recruitment_types/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "採用区分ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の採用区分情報を削除します。\n\nなお、適用日を迎えていない従業員情報の更新が予定されている採用区分の削除はできません。\n"
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/recruitment_types",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              }
+            ]
+          },
+          "docs": "採用区分情報をリストで取得します。\n"
+        },
+        {
+          "info": {
+            "name": "作成",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/recruitment_types"
+          },
+          "docs": "採用区分情報を新規登録します。\n"
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/tax_withholdings/:tax_withholding_id/tax_withholding_slips",
+            "params": [
+              {
+                "name": "tax_withholding_id",
+                "value": "",
+                "type": "path",
+                "description": "源泉徴収ID"
+              },
+              {
+                "name": "embed",
+                "value": "",
+                "type": "query",
+                "description": "埋め込むオブジェクト"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              }
+            ]
+          },
+          "docs": "源泉徴収票情報をリストで取得します。\n"
+        },
+        {
+          "info": {
+            "name": "登録",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/tax_withholdings/:tax_withholding_id/tax_withholding_slips",
+            "params": [
+              {
+                "name": "tax_withholding_id",
+                "value": "",
+                "type": "path",
+                "description": "源泉徴収グループID"
+              }
+            ]
+          },
+          "docs": "源泉徴収票情報を新規登録します。\nファイルを登録もしくは、源泉徴収票の項目を登録できます。\n\n以下のスキーマで JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\nファイルを登録する場合\n\n```\n{\n  \"crew_id\": \"string\",\n  \"file\": {\n    \"file_name\": \"file.pdf\",\n    \"content\": \"base64 content\"\n  }\n}\n```\n\n源泉徴収票の各項目(tax_withholding_slip_attribute)を登録する場合\n\n```\n{\n  \"crew_id\": \"string\",\n  \"crew_address_literal\": \"string\",\n  \"crew_position\": \"string\",\n  \"crew_full_name_yomi\": \"string\",\n  \"crew_full_name\": \"string\",\n  \"slip_type\": \"st"
+        },
+        {
+          "info": {
+            "name": "取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/tax_withholdings/:tax_withholding_id/tax_withholding_slips/:id",
+            "params": [
+              {
+                "name": "tax_withholding_id",
+                "value": "",
+                "type": "path",
+                "description": "源泉徴収ID"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "源泉徴収票ID"
+              },
+              {
+                "name": "embed",
+                "value": "",
+                "type": "query",
+                "description": "埋め込むオブジェクト"
+              }
+            ]
+          },
+          "docs": "指定した ID の源泉徴収票情報を取得します。\n"
+        },
+        {
+          "info": {
+            "name": "更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/tax_withholdings/:tax_withholding_id/tax_withholding_slips/:id",
+            "params": [
+              {
+                "name": "tax_withholding_id",
+                "value": "",
+                "type": "path",
+                "description": "源泉徴収グループID"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "源泉徴収票ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の源泉徴収票情報を更新します。\n\nなお、確定後の源泉徴収票の更新はできません。\nファイルで登録されている場合はファイルを更新できます。\n源泉徴収票の各項目(tax_withholding_slip_attribute)で登録されている場合は各項目を更新できます。\nファイルとtax_withholding_slip_attribute の入れ替え更新をしたい場合は一度削除してから新規登録してください。\n\n以下のスキーマで JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\nファイルを更新する場合\n\n```\n{\n  \"crew_id\": \"string\",\n  \"file\": {\n    \"file_name\": \"file.pdf\",\n    \"content\": \"base64 content\"\n  }\n}\n```\n\n源泉徴収票の各項目(tax_withholding_slip_attribute)を更新する場合\n\n```\n{\n  \"crew"
+        },
+        {
+          "info": {
+            "name": "部分更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/tax_withholdings/:tax_withholding_id/tax_withholding_slips/:id",
+            "params": [
+              {
+                "name": "tax_withholding_id",
+                "value": "",
+                "type": "path",
+                "description": "源泉徴収グループID"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "源泉徴収票ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の源泉徴収票情報を部分更新します。\n\nなお、確定後の源泉徴収票の更新はできません。\nファイルで登録されている場合はファイルを更新できます。\n源泉徴収票の各項目(tax_withholding_slip_attribute)で登録されている場合は各項目を更新できます。\nファイルとtax_withholding_slip_attribute の入れ替え更新をしたい場合は一度削除してから新規登録してください。\n\n以下のスキーマで JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\nファイルを更新する場合\n\n```\n{\n  \"crew_id\": \"string\",\n  \"file\": {\n    \"file_name\": \"file.pdf\",\n    \"content\": \"base64 content\"\n  }\n}\n```\n\n源泉徴収票の各項目(tax_withholding_slip_attribute)を更新する場合\n\n```\n{\n  \"cr"
+        },
+        {
+          "info": {
+            "name": "削除",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/tax_withholdings/:tax_withholding_id/tax_withholding_slips/:id",
+            "params": [
+              {
+                "name": "tax_withholding_id",
+                "value": "",
+                "type": "path",
+                "description": "源泉徴収ID"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "源泉徴収票ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の源泉徴収票情報を削除します。\n"
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/tax_withholdings",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              }
+            ]
+          },
+          "docs": "源泉徴収票グループをリストで取得します。\n"
+        },
+        {
+          "info": {
+            "name": "登録",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/tax_withholdings"
+          },
+          "docs": "源泉徴収票グループを新規登録します。\nステータスは未確定で登録されます。\n\n以下のスキーマで JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\n```\n{\n\"name\": \"string\",\n\"year\": \"R02\"\n}\n```\n"
+        },
+        {
+          "info": {
+            "name": "取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/tax_withholdings/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "源泉徴収ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の源泉徴収票グループを取得します。\n"
+        },
+        {
+          "info": {
+            "name": "更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/tax_withholdings/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "源泉徴収ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の源泉徴収票グループを更新します。\nなお、確定後の源泉徴収の更新はできません。\n\n以下のスキーマで JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\n```\n{\n \"name\": \"string\",\n \"year\": \"R02\",\n \"status\": \"wip\"\n}\n```\n"
+        },
+        {
+          "info": {
+            "name": "部分更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/tax_withholdings/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "源泉徴収ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の源泉徴収票グループを部分更新します。\nなお、確定後の源泉徴収の更新はできません。\n\n以下のスキーマで JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n(必要な項目だけにすることで部分更新が可能です）\n\n```\n{\n \"name\": \"string\",\n \"year\": \"R02\",\n \"status\": \"wip\"\n}\n```\n"
+        },
+        {
+          "info": {
+            "name": "削除",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/tax_withholdings/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "源泉徴収ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の源泉徴収票グループを削除します。\n"
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/crews/:crew_id/maternity_childcare_leaves",
+            "params": [
+              {
+                "name": "crew_id",
+                "value": "",
+                "type": "path",
+                "description": "従業員ID"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              }
+            ]
+          },
+          "docs": "指定した従業員に紐づく産休育休情報をリストで取得します。\n"
+        },
+        {
+          "info": {
+            "name": "取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/grades/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "等級ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の等級情報を取得します。\n"
+        },
+        {
+          "info": {
+            "name": "更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/grades/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "等級ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の等級情報を更新します。\n\nなお、適用日を迎えていない従業員情報の更新が予定されている等級の更新はできません。\n"
+        },
+        {
+          "info": {
+            "name": "部分更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/grades/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "等級ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の等級情報を部分更新します。\n\nなお、適用日を迎えていない従業員情報の更新が予定されている等級の更新はできません。\n"
+        },
+        {
+          "info": {
+            "name": "削除",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/grades/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "等級ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の等級情報を削除します。\n\nなお、適用日を迎えていない従業員情報の更新が予定されている等級の削除はできません。\n"
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/grades",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              }
+            ]
+          },
+          "docs": "等級情報をリストで取得します。\n"
+        },
+        {
+          "info": {
+            "name": "作成",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/grades"
+          },
+          "docs": "等級情報を新規登録します。\n"
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/payment_periods",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "並び順"
+              }
+            ]
+          },
+          "docs": "給与支給形態をリストで取得します。\n"
+        },
+        {
+          "info": {
+            "name": "取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/payment_periods/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "給与支給形態のID"
+              }
+            ]
+          },
+          "docs": "指定した ID の給与支給形態情報を取得します。\n"
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/payrolls/:payroll_id/payslips",
+            "params": [
+              {
+                "name": "payroll_id",
+                "value": "",
+                "type": "path",
+                "description": "給与ID"
+              },
+              {
+                "name": "crew_id",
+                "value": "",
+                "type": "query",
+                "description": "取得したい従業員のID（カンマ区切り）"
+              },
+              {
+                "name": "embed",
+                "value": "",
+                "type": "query",
+                "description": "埋め込むオブジェクト"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              }
+            ]
+          },
+          "docs": "給与明細情報をリストで取得します。\n"
+        },
+        {
+          "info": {
+            "name": "登録",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/payrolls/:payroll_id/payslips",
+            "params": [
+              {
+                "name": "payroll_id",
+                "value": "",
+                "type": "path",
+                "description": "給与明細グループID"
+              }
+            ]
+          },
+          "docs": "給与明細情報を登録します。\n\n以下のスキーマで JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\nvalues の配列に給与明細項目の値を設定してください。\n```\n{\n   \"crew_id\": \"従業員ID\",\n   \"memo\": \"string\",\n   \"values\": [\n     { \"key\": \"支給項目1\", \"value\": \"10000\" },\n     { \"key\": \"支給項目2\", \"value\": \"100000\" },\n     { \"key\": \"支給項目3\", \"value\": \"200000\" },\n     { \"key\": \"控除項目1\", \"value\": \"3000\" },\n     { \"key\": \"控除項目2\", \"value\": \"30000\" },\n     { \"key\": \"控除項目3\", \"value\": \"4000\" },\n     { \"key\": \"勤怠項目1\", \"value\": \""
+        },
+        {
+          "info": {
+            "name": "取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/payrolls/:payroll_id/payslips/:id",
+            "params": [
+              {
+                "name": "payroll_id",
+                "value": "",
+                "type": "path",
+                "description": "給与ID"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "給与明細ID"
+              },
+              {
+                "name": "embed",
+                "value": "",
+                "type": "query",
+                "description": "埋め込むオブジェクト"
+              }
+            ]
+          },
+          "docs": "指定した ID の給与明細情報を取得します。\n"
+        },
+        {
+          "info": {
+            "name": "削除",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/payrolls/:payroll_id/payslips/:id",
+            "params": [
+              {
+                "name": "payroll_id",
+                "value": "",
+                "type": "path",
+                "description": "給与ID"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "給与明細ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の給与明細情報を削除します。\n"
+        },
+        {
+          "info": {
+            "name": "一括登録",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/payrolls/:payroll_id/payslips/bulk",
+            "params": [
+              {
+                "name": "payroll_id",
+                "value": "",
+                "type": "path",
+                "description": "給与明細グループID"
+              }
+            ]
+          },
+          "docs": "給与明細情報を一括登録します。\n\n以下のスキーマで JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\npaysplipsのkeyに配列で従業員ごとの給与明細情報を設定してください。\n最大100件まで一括登録可能です。\n```\n{\n  \"payslips\": [\n    {\n       \"crew_id\": \"従業員ID_1\",\n       \"memo\": \"string\",\n       \"values\": [\n         { \"key\": \"支給項目1\", \"value\": \"10000\" },\n         { \"key\": \"支給項目2\", \"value\": \"100000\" },\n         { \"key\": \"支給項目3\", \"value\": \"200000\" },\n         { \"key\": \"控除項目1\", \"value\": \"3000\" },\n         { \"key\": \"控除項目2\", \"value\": "
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/payrolls",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "paid_at_from",
+                "value": "",
+                "type": "query",
+                "description": "指定した日以降の支給日で絞り込みます"
+              },
+              {
+                "name": "paid_at_to",
+                "value": "",
+                "type": "query",
+                "description": "指定した日以前の支給日で絞り込みます"
+              },
+              {
+                "name": "payment_type",
+                "value": "",
+                "type": "query",
+                "description": "支給タイプで絞り込みます"
+              }
+            ]
+          },
+          "docs": "給与明細グループをリストで取得します。\n"
+        },
+        {
+          "info": {
+            "name": "登録",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/payrolls"
+          },
+          "docs": "給与明細グループを新規登録します。\n"
+        },
+        {
+          "info": {
+            "name": "取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/payrolls/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "給与ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の給与明細グループを取得します。\n"
+        },
+        {
+          "info": {
+            "name": "部分更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/payrolls/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "給与ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の給与明細グループを部分更新します。\n更新できるのは  給与明細グループの名前（管理者向け）(name_for_admin), 給与明細グループの名前（従業員向け）(name_for_crew) です。\n"
+        },
+        {
+          "info": {
+            "name": "削除",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/payrolls/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "給与ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の給与明細グループを削除します。\n"
+        },
+        {
+          "info": {
+            "name": "確定処理",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/payrolls/:id/fix",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "給与ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の給与明細グループを確定処理します。\n"
+        },
+        {
+          "info": {
+            "name": "確定解除処理",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/payrolls/:id/unfix",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "給与ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の給与明細グループを未確定処理します。\n公開済みの場合は、未公開になります。\n"
+        },
+        {
+          "info": {
+            "name": "公開処理",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/payrolls/:id/publish",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "給与ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の給与明細グループを公開処理します。\n公開時刻(published_at) と 公開と同時に通知を行なう(notify_with_publish)が未設定の場合は、即時公開、通知なしで公開されます。\n公開時刻に過去の日時は登録できません。\n公開時刻の予約可能な期間は、1ヶ月以内です。\n未来の公開時刻が設定されている場合は、更新可能です。\n"
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/dependent_relations",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "フィルター条件"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              }
+            ]
+          },
+          "docs": "続柄のリストを取得します。\n"
+        },
+        {
+          "info": {
+            "name": "取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/job_categories/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "職種ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の職種情報を取得します。\n"
+        },
+        {
+          "info": {
+            "name": "更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/job_categories/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "職種ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の職種情報を更新します。\n\nなお、適用日を迎えていない従業員情報の更新が予定されている職種の更新はできません。\n"
+        },
+        {
+          "info": {
+            "name": "部分更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/job_categories/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "職種ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の職種情報を部分更新します。\n\nなお、適用日を迎えていない従業員情報の更新が予定されている職種の更新はできません。\n"
+        },
+        {
+          "info": {
+            "name": "削除",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/job_categories/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "職種ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の職種情報を削除します。\n\nなお、適用日を迎えていない従業員情報の更新が予定されている職種の削除はできません。\n"
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/job_categories",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              }
+            ]
+          },
+          "docs": "職種情報をリストで取得します。\n"
+        },
+        {
+          "info": {
+            "name": "作成",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/job_categories"
+          },
+          "docs": "職種情報を新規登録します。\n"
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/departments",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "query",
+                "description": "コード"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "並び順"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              }
+            ]
+          },
+          "docs": "部署をリストで取得します。\n"
+        },
+        {
+          "info": {
+            "name": "登録",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/departments"
+          },
+          "docs": "部署情報を新規登録します。\n\n以下のスキーマで JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\n```\n{\n  \"name\": \"string\",\n  \"position\": 0,\n  \"parent_id\": 0\n}\n```\n\n- `name` には `/` を含められません\n- `position` を指定しなかった場合は、自動で採番されます。\n"
+        },
+        {
+          "info": {
+            "name": "取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/departments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "部署ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の部署情報を取得します。\n"
+        },
+        {
+          "info": {
+            "name": "更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/departments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "部署ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の部署情報を更新します。\n未指定の属性は情報が削除されます。未指定の属性を消したくない場合は「部分更新」をご利用ください。\n\n以下のスキーマで JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\n```\n{\n  \"name\": \"string\",\n  \"position\": 0,\n  \"parent_id\": 0\n}\n```\n\n`name` には `/` を含められません\n"
+        },
+        {
+          "info": {
+            "name": "部分更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/departments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "部署ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の部署情報を部分更新します。\n\n以下のスキーマで JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\n```\n{\n  \"name\": \"string\",\n  \"position\": 0,\n  \"parent_id\": 0\n}\n```\n\n`name` には `/` を含められません\n"
+        },
+        {
+          "info": {
+            "name": "削除",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/departments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "部署ID"
+              }
+            ]
+          },
+          "docs": "**このエンドポイントは利用非推奨です**\n\n「廃止日」を指定できる「廃止（POST）」のリリースに伴い、このエンドポイントは利用非推奨となりました。\n今後は、「廃止（POST）」をご利用ください。\n"
+        },
+        {
+          "info": {
+            "name": "廃止",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/departments/:id/discontinue",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "部署ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の部署を廃止します。\n\n以下のスキーマで JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\n\n```\n{\n  \"discontinued_date\": \"string\"\n}\n```\n\n** `discontinued_date` (廃止日)について**\n\n- 部署が存続していた最後の日を指定してください。\n- 過去の日付のみ指定できます。\n- その他、「部署の廃止」そのものの注意点については、[部署マスターを廃止する](https://support.smarthr.jp/ja/help/articles/1b1300f0-23ed-4d63-ba2b-acf99a97732a/)を参照してください。\n"
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/employment_types",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              }
+            ]
+          },
+          "docs": "雇用形態をリストで取得します。\n"
+        },
+        {
+          "info": {
+            "name": "登録",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/employment_types"
+          },
+          "docs": "雇用形態情報を新規登録します。\n\n以下のスキーマで JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\n```\n{\n  \"name\": \"string\",\n  \"code\": \"string\"\n}\n```\n"
+        },
+        {
+          "info": {
+            "name": "取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/employment_types/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "雇用形態ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の雇用形態情報を取得します。\n"
+        },
+        {
+          "info": {
+            "name": "更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/employment_types/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "雇用形態ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の雇用形態情報を更新します。\n未指定の属性は情報が削除されます。未指定の属性を消したくない場合は「部分更新」をご利用ください。\n\n以下のスキーマで JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\n```\n{\n  \"name\": \"string\"\n}\n```\n\nなお、以下に該当する雇用形態の更新はできません。\n - システム標準の雇用形態\n - 適用日を迎えていない従業員情報の更新が予定されている雇用形態\n"
+        },
+        {
+          "info": {
+            "name": "部分更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/employment_types/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "雇用形態ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の雇用形態情報を部分更新します。\n\n以下のスキーマで JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\n```\n{\n  \"name\": \"string\",\n  \"code\": \"string\"\n}\n```\n\nなお、以下に該当する雇用形態の更新はできません。\n - システム標準の雇用形態の名称\n - 適用日を迎えていない従業員情報の更新が予定されている雇用形態\n"
+        },
+        {
+          "info": {
+            "name": "削除",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/employment_types/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "雇用形態ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の雇用形態情報を削除します。\n\nなお、以下に該当する雇用形態の削除はできません。\n - システム標準の雇用形態\n - 適用日を迎えていない従業員情報の更新が予定されている雇用形態\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

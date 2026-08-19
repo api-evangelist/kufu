@@ -1,0 +1,130 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SmartHR カスタム家族項目テンプレート Webhook API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhook",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の Webhook 情報を取得します。\n"
+        },
+        {
+          "info": {
+            "name": "更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の Webhook 情報を更新します。\n未指定の属性は情報が削除されます。未指定の属性を消したくない場合は「部分更新」をご利用ください。\n\nBODY SAMPLE と BODY SCHEMA を参考に JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\nJSON 例\n```\n{\n  \"url\": \"https://example.com/\",\n  \"crew_created\": true,\n  \"crew_updated\": false,\n  \"crew_deleted\": true,\n  \"crew_imported\": false\n}\n```\n"
+        },
+        {
+          "info": {
+            "name": "部分更新",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の Webhook 情報を部分更新します。\n\nBODY SAMPLE と BODY SCHEMA を参考に JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\nJSON 例\n```\n{\n  \"crew_created\": false,\n  \"crew_updated\": true\n}\n```\n"
+        },
+        {
+          "info": {
+            "name": "削除",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook ID"
+              }
+            ]
+          },
+          "docs": "指定した ID の Webhook 情報を削除します。\n"
+        },
+        {
+          "info": {
+            "name": "リストの取得",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/webhooks",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page of results to fetch."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              }
+            ]
+          },
+          "docs": "Webhook をリストで取得します。\n"
+        },
+        {
+          "info": {
+            "name": "登録",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/webhooks"
+          },
+          "docs": "Webhook を新規登録します。\n\nBODY SAMPLE と BODY SCHEMA を参考に JSON 文字列を構築してリクエストボディに詰め、リクエストヘッダーの `Content-Type` に `application/json` を指定してリクエストしてください。\n\nJSON 例\n```\n{\n  \"url\": \"https://example.com/\",\n  \"crew_created\": true,\n  \"crew_updated\": false,\n  \"crew_deleted\": true,\n  \"crew_imported\": false\n}\n```\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

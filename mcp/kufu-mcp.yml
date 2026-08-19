@@ -2,20 +2,16 @@ generated: '2026-07-19'
 method: derived
 source: openapi/kufu-smarthr-openapi.json
 status: candidate
-description: >-
-  SmartHR publishes NO official MCP server. This is a CANDIDATE tool surface
-  derived from the 120 operations in the published Swagger 2.0 document — a
-  design proposal for what an MCP server over the SmartHR API should expose,
-  not something SmartHR ships. Every operation named below is a real
-  operationId read from the spec; none are invented.
-
+description: SmartHR publishes NO official MCP server. This is a CANDIDATE tool surface derived from the
+  120 operations in the published Swagger 2.0 document — a design proposal for what an MCP server over
+  the SmartHR API should expose, not something SmartHR ships. Every operation named below is a real operationId
+  read from the spec; none are invented.
 official_server: none
 searched:
-  - https://developer.smarthr.jp/
-  - https://github.com/kufu
-  - MCP registry (io.smarthr / io.apis namespace)
+- https://developer.smarthr.jp/
+- https://github.com/kufu
+- MCP registry (io.smarthr / io.apis namespace)
 result: no official or community MCP server found
-
 candidate_server:
   name: smarthr
   transport: stdio or streamable-http
@@ -24,134 +20,123 @@ candidate_server:
     type: bearer
     env: SMARTHR_ACCESS_TOKEN
     tenant_env: SMARTHR_SUBDOMAIN
-    note: >-
-      Tokens are tenant-scoped and carry the permissions of their attached
-      role. A single token cannot span subdomains.
-
+    note: Tokens are tenant-scoped and carry the permissions of their attached role. A single token cannot
+      span subdomains.
   safety_notes:
-    - >-
-      This API holds Japanese statutory personal data — My Number (individual
-      number), basic pension numbers, bank accounts, salary, disability status
-      and residency documents. An MCP server over it should default to
-      read-only and require explicit opt-in for write tools.
-    - >-
-      Writes are not idempotent (no idempotency key), so a retried tool call
-      can duplicate records. Prefer read tools plus human-confirmed writes.
-    - >-
-      Bulk import/export runs asynchronously; a tool must poll rather than
-      assume completion.
-    - >-
-      Rate limits are tight at 10 requests/second per token — an agent looping
-      over employees will trip the intensive limit.
-
+  - This API holds Japanese statutory personal data — My Number (individual number), basic pension numbers,
+    bank accounts, salary, disability status and residency documents. An MCP server over it should default
+    to read-only and require explicit opt-in for write tools.
+  - Writes are not idempotent (no idempotency key), so a retried tool call can duplicate records. Prefer
+    read tools plus human-confirmed writes.
+  - Bulk import/export runs asynchronously; a tool must poll rather than assume completion.
+  - Rate limits are tight at 10 requests/second per token — an agent looping over employees will trip
+    the intensive limit.
   tools:
-    - name: list_employees
-      operation: getV1Crews
-      method: GET
-      path: /v1/crews
-      mutating: false
-      description: List employees, with filtering, sorting and page/per_page pagination.
-    - name: get_employee
-      operation: getV1CrewsId
-      method: GET
-      path: /v1/crews/{id}
-      mutating: false
-    - name: list_departments
-      operation: getV1Departments
-      method: GET
-      path: /v1/departments
-      mutating: false
-      description: List the department tree.
-    - name: get_company
-      operation: getV1Companies
-      method: GET
-      path: /v1/companies
-      mutating: false
-    - name: list_biz_establishments
-      operation: getV1BizEstablishments
-      method: GET
-      path: /v1/biz_establishments
-      mutating: false
-    - name: list_dependents
-      operation: getV1CrewsCrewIdDependents
-      method: GET
-      path: /v1/crews/{crew_id}/dependents
-      mutating: false
-    - name: list_employment_types
-      operation: getV1EmploymentTypes
-      method: GET
-      path: /v1/employment_types
-      mutating: false
-    - name: list_payrolls
-      operation: getV1Payrolls
-      method: GET
-      path: /v1/payrolls
-      mutating: false
-    - name: list_payslips
-      operation: getV1PayrollsPayrollIdPayslips
-      method: GET
-      path: /v1/payrolls/{payroll_id}/payslips
-      mutating: false
-    - name: list_tax_withholdings
-      operation: getV1TaxWithholdings
-      method: GET
-      path: /v1/tax_withholdings
-      mutating: false
-    - name: list_users
-      operation: getV1Users
-      method: GET
-      path: /v1/users
-      mutating: false
-    - name: get_batch_job
-      operation: getV1BatchJobsId
-      method: GET
-      path: /v1/batch_jobs/{id}
-      mutating: false
-      description: Poll the status of an async import/export job.
-    - name: create_employee
-      operation: postV1Crews
-      method: POST
-      path: /v1/crews
-      mutating: true
-      confirm: required
-    - name: update_employee
-      operation: patchV1CrewsId
-      method: PATCH
-      path: /v1/crews/{id}
-      mutating: true
-      confirm: required
-    - name: invite_employee
-      operation: putV1CrewsIdInvite
-      method: PUT
-      path: /v1/crews/{id}/invite
-      mutating: true
-      confirm: required
-    - name: create_department
-      operation: postV1Departments
-      method: POST
-      path: /v1/departments
-      mutating: true
-      confirm: required
-    - name: register_webhook
-      operation: postV1Webhooks
-      method: POST
-      path: /v1/webhooks
-      mutating: true
-      confirm: required
-
+  - name: list_employees
+    operation: getV1Crews
+    method: GET
+    path: /v1/crews
+    mutating: false
+    description: List employees, with filtering, sorting and page/per_page pagination.
+  - name: get_employee
+    operation: getV1CrewsId
+    method: GET
+    path: /v1/crews/{id}
+    mutating: false
+  - name: list_departments
+    operation: getV1Departments
+    method: GET
+    path: /v1/departments
+    mutating: false
+    description: List the department tree.
+  - name: get_company
+    operation: getV1Companies
+    method: GET
+    path: /v1/companies
+    mutating: false
+  - name: list_biz_establishments
+    operation: getV1BizEstablishments
+    method: GET
+    path: /v1/biz_establishments
+    mutating: false
+  - name: list_dependents
+    operation: getV1CrewsCrewIdDependents
+    method: GET
+    path: /v1/crews/{crew_id}/dependents
+    mutating: false
+  - name: list_employment_types
+    operation: getV1EmploymentTypes
+    method: GET
+    path: /v1/employment_types
+    mutating: false
+  - name: list_payrolls
+    operation: getV1Payrolls
+    method: GET
+    path: /v1/payrolls
+    mutating: false
+  - name: list_payslips
+    operation: getV1PayrollsPayrollIdPayslips
+    method: GET
+    path: /v1/payrolls/{payroll_id}/payslips
+    mutating: false
+  - name: list_tax_withholdings
+    operation: getV1TaxWithholdings
+    method: GET
+    path: /v1/tax_withholdings
+    mutating: false
+  - name: list_users
+    operation: getV1Users
+    method: GET
+    path: /v1/users
+    mutating: false
+  - name: get_batch_job
+    operation: getV1BatchJobsId
+    method: GET
+    path: /v1/batch_jobs/{id}
+    mutating: false
+    description: Poll the status of an async import/export job.
+  - name: create_employee
+    operation: postV1Crews
+    method: POST
+    path: /v1/crews
+    mutating: true
+    confirm: required
+  - name: update_employee
+    operation: patchV1CrewsId
+    method: PATCH
+    path: /v1/crews/{id}
+    mutating: true
+    confirm: required
+  - name: invite_employee
+    operation: putV1CrewsIdInvite
+    method: PUT
+    path: /v1/crews/{id}/invite
+    mutating: true
+    confirm: required
+  - name: create_department
+    operation: postV1Departments
+    method: POST
+    path: /v1/departments
+    mutating: true
+    confirm: required
+  - name: register_webhook
+    operation: postV1Webhooks
+    method: POST
+    path: /v1/webhooks
+    mutating: true
+    confirm: required
   excluded_from_candidate:
-    - reason: >-
-        Destructive operations (deleteV1CrewsId, deleteV1DepartmentsId,
-        deleteV1PayrollsId and the other DELETE operations) are deliberately
-        omitted from the candidate tool surface. Deleting an employee record in
-        a system of record for statutory payroll data is not an agent-safe
-        action.
-    - reason: >-
-        My Number (マイナンバー) operations are omitted — individual numbers are
-        regulated under Japan's My Number Act and should never transit an agent
-        context.
-
+  - reason: Destructive operations (deleteV1CrewsId, deleteV1DepartmentsId, deleteV1PayrollsId and the
+      other DELETE operations) are deliberately omitted from the candidate tool surface. Deleting an employee
+      record in a system of record for statutory payroll data is not an agent-safe action.
+  - reason: My Number (マイナンバー) operations are omitted — individual numbers are regulated under Japan's
+      My Number Act and should never transit an agent context.
 related:
   openapi: openapi/kufu-smarthr-openapi.json
   skills: skills/_index.yml
   conventions: conventions/kufu-conventions.yml
+deployment:
+  mode: none
+  verified: derived
+  checked: '2026-08-12'
+  source: catalog MCP census
