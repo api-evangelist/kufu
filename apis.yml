@@ -43,6 +43,17 @@ tags:
 - HR Tech
 - Payroll
 - Employee Data
+- Software-as-a-Service
+- Japan
+- Onboarding
+- Social Insurance
+- Webhook
+tags_raw:
+- Company
+- Human Resources
+- HR Tech
+- Payroll
+- Employee Data
 - SaaS
 - Japan
 - Onboarding
@@ -54,7 +65,8 @@ apis:
   description: カスタム家族項目テンプレートを操作します
   humanURL: https://developer.smarthr.jp/api
   baseURL: https://app.smarthr.jp/api/v1
-  tags:
+  tags: []
+  tags_raw:
   - カスタム家族項目テンプレート
   properties:
   - type: OpenAPI
