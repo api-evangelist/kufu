@@ -12,6 +12,18 @@ description: >-
   webhook event surface, an application-gated sandbox on a separate domain, and
   an open-source React component library, but no official client SDK.
 url: https://raw.githubusercontent.com/api-evangelist/kufu/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
