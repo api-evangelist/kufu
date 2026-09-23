@@ -1,16 +1,22 @@
 {
   "provider": "kufu",
   "sources": [
-    "kufu-default-api-openapi.yml",
-    "kufu-webhook-api-openapi.yml"
+    "_original/kufu-smarthr-openapi.json"
   ],
   "outputs": [
-    "kufu-default-api-openapi.yml",
-    "kufu-webhook-api-openapi.yml"
+    "kufu-webhook-api-openapi.yml",
+    "kufu-default-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "kufu-smarthr-openapi.json: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "kufu-default-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kufu-webhook-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
